@@ -20,10 +20,14 @@
       li: a href="#" Контакты
       li: a href="#" Прайс-лист
 
-    .input-group.input-group-lg
-      input.form-control type="text" placeholder="Поиск по наименованию..."
+    .input-group.input-group-lg ng-app="mainApp" ng-controller="TestCtrl as vm"
+      input.form-control { placeholder="Поиск по наименованию..."
+                           type="text"
+                           ng-model="vm.selected"
+                           uib-typeahead="product as product.name for product in vm.products | filter:$viewValue | limitTo:8" }
       span.input-group-btn
         button.btn.btn-default type="button" Поиск по сайту
+
     .row
       a.thumbnail.col-md-2 href="#"
         img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQRnT1LgM80g5IrAzlb13bON2ItTwYqDUhKrG-tDd34lCJSHtLg"

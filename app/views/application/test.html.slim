@@ -1,0 +1,9 @@
+.input-group.input-group-lg ng-app="mainApp" ng-controller="TestCtrl as vm"
+  input.form-control { placeholder="Поиск по наименованию..."
+                       type="text"
+                       ng-model="vm.selected"
+                       uib-typeahead="product as product.name for product in vm.products | filter:$viewValue | limitTo:8" }
+  span.input-group-btn
+    button.btn.btn-default type="button" Поиск по сайту
+      | {{ vm.selected }}
+
