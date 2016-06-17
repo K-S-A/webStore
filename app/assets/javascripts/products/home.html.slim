@@ -1,0 +1,14 @@
+.container-fluid
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
+
+  .col-xs-8
+    div data={ ng_include: "'products/_header.html'" }
+
+    form.input-group.input-group-lg data={ ng_include: "'products/_main_search.html'", ng_submit: "vm.startSearch()" }
+
+    ul.list-unstyled.row.main-navbar.text-center
+      li.col-xs-6: p
+        | (495)669-40-40
+      li.col-xs-6: p 1@elmarket.org
+
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }

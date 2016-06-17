@@ -1,9 +1,12 @@
 .input-group.input-group-lg ng-app="mainApp" ng-controller="TestCtrl as vm"
+  pre Selected: {{ vm.selected | json }}
   input.form-control { placeholder="Поиск по наименованию..."
                        type="text"
                        ng-model="vm.selected"
-                       uib-typeahead="product as product.name for product in vm.products | filter:$viewValue | limitTo:8" }
+                       uib-typeahead="product as product.name for product in vm.searchProduct($viewValue)"
+                       typeahead-focus-first="false"
+                       typeahead-select-on-exact="true"
+                       typeahead-wait-ms="500" }
   span.input-group-btn
     button.btn.btn-default type="button" Поиск по сайту
-      | {{ vm.selected }}
 

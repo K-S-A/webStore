@@ -1,0 +1,10 @@
+input.form-control { placeholder="Поиск по наименованию..."
+                     type="text"
+                     ng-model="vm.selected"
+                     uib-typeahead="product as product.name for product in vm.searchProduct($viewValue)"
+                     typeahead-template-url="products/_customResultsTemplate.html"
+                     typeahead-select-on-exact="true"
+                     typeahead-focus-first="false"
+                     typeahead-wait-ms="500" }
+span.input-group-btn
+  button.btn.btn-default type="submit" Поиск по сайту

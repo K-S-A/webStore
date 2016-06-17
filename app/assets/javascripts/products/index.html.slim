@@ -1,0 +1,11 @@
+.container-fluid
+  .col-xs-8.col-xs-offset-2
+    div data={ ng_include: "'products/_header.html'" }
+    .media data={ ng_repeat: "product in vm.products" }
+      a.pull-left data={ ui_sref: "product({id: product.id})" }
+        img.media-object { width="100"
+                           alt="{{product.name}}"
+                           data={ ng_src: "{{product.imgLink}}" } }
+      .media-body
+        a data={ ng_bind: "product.name",
+                 ui_sref: "product({id: product.id})" }
