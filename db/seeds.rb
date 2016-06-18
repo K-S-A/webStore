@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 products = [
   {"name":"33TA0001 Пульт управления для 2х трубных фанкойлов"},
   {"name":"82.707.AD.05.710 Воздухоотводчик отсеч/кл Icma Ду15 авт"},
@@ -82,5 +75,5 @@ products = [
 ]
 
 Product.create(products) do |product|
-  product.img_link = Faker::Placeholdit.image
+  product.img_link = 'http://res.cloudinary.com/divwgxspq/image/upload/v1466184285/70MA3X_vby7od.jpg'
 end
