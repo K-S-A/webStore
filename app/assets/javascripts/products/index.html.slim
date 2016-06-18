@@ -3,7 +3,7 @@
     div data={ ng_include: "'products/_header.html'" }
     .media data={ ng_repeat: "product in vm.products" }
       a.pull-left data={ ui_sref: "product({id: product.id})" }
-        img.media-object { width="100"
+        img.media-object { height="35"
                            alt="{{product.name}}"
                            data={ ng_src: "{{product.imgLink}}" } }
       .media-body
