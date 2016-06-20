@@ -9,7 +9,9 @@ angular.module('mainApp').factory 'Product', [
       name: 'product'
       serializer: railsSerializer ->
         @only 'id', 'name', 'img_link')
-
+    
+    Product.selected = ''
+    
     Product.search = (name) ->
       Product.$get('products/search', name: name)
 

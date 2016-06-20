@@ -5,7 +5,7 @@ angular.module('mainApp').controller 'ProductsCtrl', [
   '$state'
   (Product, $state) ->
     vm = this
-    vm.selected = ''
+    vm.selected = Product.selected
     vm.current = Product.current
     vm.products = Product.all
 
@@ -14,6 +14,7 @@ angular.module('mainApp').controller 'ProductsCtrl', [
 
     vm.startSearch = ->
       if vm.selected.id
+        Product.selected = vm.selected
         $state.go('product', id: vm.selected.id)
       else
         Product.selected = vm.selected
