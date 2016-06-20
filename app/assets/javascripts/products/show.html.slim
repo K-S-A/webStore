@@ -1,2 +1,11 @@
-pre
-  | {{vm.current | json}}
+.container-fluid
+  .col-xs-8.col-xs-offset-2
+    div data={ ng_include: "'products/_header.html'" }
+    .media
+      a.thumbnail.pull-left data={ ui_sref: "product({id: vm.current.id})" }
+        img.media-object { height="250"
+                           alt="{{vm.current.name}}"
+                           data={ ng_src: "{{vm.current.imgLink}}" } }
+      .media-body
+        a.media-heading data={ ui_sref: "product({id: vm.current.id})" }
+          h4.text-center data={ ng_bind: "vm.current.name" }

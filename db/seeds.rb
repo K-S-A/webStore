@@ -75,5 +75,5 @@ products = [
 ]
 
 Product.create(products) do |product|
-  product.img_link = 'http://res.cloudinary.com/divwgxspq/image/upload/v1466184285/70MA3X_vby7od.jpg'
+  product.img_link = 'https://res.cloudinary.com/divwgxspq/image/upload/v1466184285/70MA3X_vby7od.jpg'
 end
