@@ -1,7 +1,12 @@
 class Product < ActiveRecord::Base
-  # scope :search, -> (name) { order(:name).where('name ILIKE ?', "%#{name}%") }
-  scope :search, -> (name) do
-    name = name.split(/[ \-,._]+/).map { |n| "%#{n}%" }
-    order(:name).where('name ILIKE ANY ( array[?] )', name)
+  MAX_SEARCH_COUNT = 8
+
+  scope :exact_search, -> (name) { order(:name).where('name ILIKE ?', "%#{name}%").limit(MAX_SEARCH_COUNT) }
+
+  scope :search, -> (name = '', ids = [], count = true) do
+    name = name.blank? ? ['%%'] : name.split(/[ \-,._]+/).map { |n| "%#{n}%" }
+    order(:name).where.not(id: ids)
+                .where('name ILIKE ANY ( array[?] )', name)
+                .limit(count ? (MAX_SEARCH_COUNT - ids.size) : nil)
   end
 end

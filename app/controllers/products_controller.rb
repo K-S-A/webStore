@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
+  after_action -> { p @products.size }
   def index
-    @products = Product.search(params[:name])
+    @products = Product.search(params[:name], [], false)
   end
 
   def show
@@ -8,7 +9,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:name]).limit(8)
+    @products = Product.exact_search(params[:name])
+
+    if @products.size < Product::MAX_SEARCH_COUNT
+      @products += Product.search(params[:name], @products.map(&:id))
+    end
 
     render 'index'
   end
