@@ -1,14 +1,15 @@
 .text-center
   a data={ ui_sref: "home" }
-    h1.main-title ЭЛЕКТРОМАРКЕТ
-  h2.sub-title ОПЕРАТИВНОСТЬ ДЛЯ ПРОФЕССИОНАЛОВ
-  p.main-description Мы работаем только с юридическими лицами
+    h1.main-title translate="main.title"
+  h2.sub-title translate="main.subtitle"
+  p.main-description translate="main.description"
 ul.nav.nav-pills.nav-justified.main-navbar
   li data={ ui_sref_active: "active" }
-    a data={ ui_sref: "about" } О компании
+    a translate="ABOUT_COMPANY" data={ ui_sref: "about" }
   li data={ ui_sref_active: "active" }
-    a data={ ui_sref: "order" } Оформить заказ
+    a translate="PLACE_ORDER" data={ ui_sref: "order" }
   li data={ ui_sref_active: "active" }
-    a data={ ui_sref: "contacts" } Контакты
+    a translate="CONTACTS" data={ ui_sref: "contacts" }
   li data={ ui_sref_active: "active" }
-    a data={ ui_sref: "priceList" } Прайс-лист
+    a translate="PRICE_LIST" data={ ui_sref: "priceList" }
+

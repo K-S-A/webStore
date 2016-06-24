@@ -4,9 +4,16 @@ class Product < ActiveRecord::Base
   scope :exact_search, -> (name) { order(:name).where('name ILIKE ?', "%#{name}%").limit(MAX_SEARCH_COUNT) }
 
   scope :search, -> (name = '', ids = [], count = true) do
+    name = trim(name)
     name = name.blank? ? ['%%'] : name.split(/[ \-,._]+/).map { |n| "%#{n}%" }
     order(:name).where.not(id: ids)
                 .where('name ILIKE ANY ( array[?] )', name)
                 .limit(count ? (MAX_SEARCH_COUNT - ids.size) : nil)
+  end
+
+  private
+
+  def self.trim(name)
+    name.gsub(/^\W+/, '')
   end
 end

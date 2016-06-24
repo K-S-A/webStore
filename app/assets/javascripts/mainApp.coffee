@@ -9,10 +9,14 @@ angular.module('mainApp', [
   'xeditable'
   'infinite-scroll'
   'rails'
+  'ngCookies'
+  'ngSanitize'
+  'pascalprecht.translate'
 ]).config([
   '$stateProvider'
   '$urlRouterProvider'
-  ($stateProvider, $urlRouterProvider) ->
+  '$translateProvider'
+  ($stateProvider, $urlRouterProvider, $translateProvider) ->
     $stateProvider
       .state 'home',
         url: '/'
@@ -40,6 +44,16 @@ angular.module('mainApp', [
         templateUrl: 'static/contacts.html'
 
     $urlRouterProvider.otherwise '/'
+
+    $translateProvider.useStaticFilesLoader({
+      prefix: '/languages/',
+      suffix: '.json'
+    })
+
+    $translateProvider.preferredLanguage('en')
+    $translateProvider.useSanitizeValueStrategy('sanitize')
+    $translateProvider.useLocalStorage()
+
     return
 
 ])

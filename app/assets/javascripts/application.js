@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery-ui
-//= require angular/angular
+//= require angular
+//= require angular-translate
+//= require angular-sanitize
+//= require angular-cookies
+//= require angular-translate-storage-cookie
+//= require angular-translate-storage-local
+//= require angular-translate-loader-static-files
 //= require angular-rails-templates
 //= require AngularDevise
 //= require angular-ui-router
