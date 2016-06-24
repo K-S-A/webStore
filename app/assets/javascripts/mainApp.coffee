@@ -45,14 +45,14 @@ angular.module('mainApp', [
 
     $urlRouterProvider.otherwise '/'
 
-    $translateProvider.useStaticFilesLoader({
-      prefix: '/languages/',
-      suffix: '.json'
-    })
-
-    $translateProvider.preferredLanguage('en')
-    $translateProvider.useSanitizeValueStrategy('sanitize')
-    $translateProvider.useLocalStorage()
+    $translateProvider
+      .preferredLanguage('en')
+      .useSanitizeValueStrategy('sanitize')
+      .useLocalStorage()
+      .useStaticFilesLoader({
+        prefix: '/languages/',
+        suffix: '.json'
+      })
 
     return
 
