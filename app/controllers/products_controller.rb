@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  after_action -> { p @products.size }
   def index
     @products = Product.search(params[:name], [], false)
   end

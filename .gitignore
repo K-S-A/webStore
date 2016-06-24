@@ -3,7 +3,8 @@ vendor/
 *.sqlite3
 log/
 tmp/
-public/
+public/*.html
+public/*.txt
 ~*
 
 # Ignore application configuration
