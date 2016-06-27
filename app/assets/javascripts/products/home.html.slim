@@ -4,7 +4,11 @@
   .col-xs-8
     div data={ ng_include: "'products/_header.html'" }
 
-    form.input-group.input-group-lg data={ ng_include: "'products/_main_search.html'", ng_submit: "vm.startSearch()" }
+    form.input-group.input-group-lg data={ ng_include: "'products/_main_search.html'",
+                                           ng_submit: "vm.startSearch()" }
+
+    .media data={ ng_repeat: "product in vm.products",
+                  ng_include: "'products/index.html'" }
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

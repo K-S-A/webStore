@@ -9,11 +9,21 @@ angular.module('mainApp').factory 'Product', [
       name: 'product'
       serializer: railsSerializer ->
         @only 'id', 'name', 'img_link')
-    
+
     Product.selected = ''
-    
+    Product.all = []
+    Product.current = {}
+
     Product.search = (name) ->
       Product.$get('products/search', name: name)
+
+    Product.full_search = ->
+      Product.query(name: Product.selected).then (data) ->
+        angular.copy(data, Product.all)
+
+    Product.find = (id) ->
+      Product.get(id: id).then (data) ->
+        Product.current = data
 
     Product
 ]

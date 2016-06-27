@@ -27,15 +27,7 @@ angular.module('mainApp', [
         templateUrl: 'products/show.html'
         controller: 'ProductsCtrl as vm'
         resolve: getProduct: ['Product', '$stateParams', (Product, $stateParams) ->
-          Product.get(id: $stateParams.id).then (data) ->
-            Product.current = data]
-      .state 'products',
-        url: '/products'
-        templateUrl: 'products/index.html'
-        controller: 'ProductsCtrl as vm'
-        resolve: getProduct: ['Product', (Product) ->
-          Product.query(name: Product.selected).then (data) ->
-            Product.all = data]
+          Product.find($stateParams.id)]
       .state 'about',
         url: '/about'
         templateUrl: 'static/about.html'
