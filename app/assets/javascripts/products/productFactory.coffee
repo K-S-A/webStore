@@ -17,9 +17,12 @@ angular.module('mainApp').factory 'Product', [
     Product.search = (name) ->
       Product.$get('products/search', name: name)
 
-    Product.full_search = ->
-      Product.query(name: Product.selected).then (data) ->
-        angular.copy(data, Product.all)
+    Product.fullSearch = ->
+      if Product.selected.length
+        Product.query(name: Product.selected).then (data) ->
+          angular.copy(data, Product.all)
+      else
+        angular.copy([], Product.all)
 
     Product.find = (id) ->
       Product.get(id: id).then (data) ->
