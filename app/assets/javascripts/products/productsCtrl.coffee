@@ -16,8 +16,10 @@ angular.module('mainApp').controller 'ProductsCtrl', [
       Product.selected = vm.selected
       if vm.selected.id
         $state.go('product', id: vm.selected.id)
-      else
+      else if vm.selected.length
         Product.full_search()
+      else
+        angular.copy([], Product.all)
 
     vm
 ]
