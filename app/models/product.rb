@@ -11,9 +11,10 @@ class Product < ActiveRecord::Base
                 .limit(count ? (MAX_SEARCH_COUNT - ids.size) : nil)
   end
 
-  private
+  class << self
+    private
 
-  def self.trim!(name)
-    name.gsub!(/^[\p{Punct}\p{Space}]+/, '')
-  end
+    def self.trim!(name)
+      name.gsub!(/^[\p{Punct}\p{Space}]+/, '')
+    end
 end

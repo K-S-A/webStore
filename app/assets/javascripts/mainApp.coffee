@@ -39,7 +39,7 @@ angular.module('mainApp', [
 
     $translateProvider
       .preferredLanguage('en')
-      .useSanitizeValueStrategy('sanitize')
+      .useSanitizeValueStrategy('sanitizeParameters')
       .useLocalStorage()
       .useStaticFilesLoader({
         prefix: '/languages/',

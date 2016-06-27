@@ -1,4 +1,4 @@
-input.form-control { placeholder="Поиск по наименованию..."
+input.form-control { placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"
                      type="text"
                      ng-model="vm.selected"
                      uib-typeahead="product as product.name for product in vm.searchProduct($viewValue)"
@@ -7,4 +7,4 @@ input.form-control { placeholder="Поиск по наименованию..."
                      typeahead-focus-first="false"
                      typeahead-wait-ms="500" }
 span.input-group-btn
-  button.btn.btn-default type="submit" Поиск по сайту
+  button.btn.btn-default translate="SEARCH_BUTTON" type="submit"
