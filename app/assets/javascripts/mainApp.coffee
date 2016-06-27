@@ -34,6 +34,19 @@ angular.module('mainApp', [
       .state 'contacts',
         url: '/contacts'
         templateUrl: 'static/contacts.html'
+      .state 'cart',
+        url: '/cart'
+        template: '<ui-view></ui-view>'
+        redirectTo: 'cart.details'
+      .state 'cart.details',
+        url: '/details'
+        templateUrl: 'cart/index.html'
+        controller: 'ProductsCtrl as vm'
+      .state 'cart.search',
+        url: '/search'
+        templateUrl: 'products/search.html'
+        controller: 'ProductsCtrl as vm'
+
 
     $urlRouterProvider.otherwise '/'
 
@@ -48,4 +61,14 @@ angular.module('mainApp', [
 
     return
 
+]).run([
+  '$rootScope'
+  '$state'
+  ($rootScope, $state) ->
+    $rootScope.$on("$stateChangeError", console.log.bind(console))
+
+    $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) ->
+      if toState.redirectTo
+        event.preventDefault()
+        $state.go(toState.redirectTo, toParams)
 ])

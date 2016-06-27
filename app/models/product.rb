@@ -14,7 +14,8 @@ class Product < ActiveRecord::Base
   class << self
     private
 
-    def self.trim!(name)
+    def trim!(name)
       name.gsub!(/^[\p{Punct}\p{Space}]+/, '')
     end
+  end
 end

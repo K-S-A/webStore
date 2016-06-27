@@ -1,0 +1,18 @@
+.container-fluid
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
+
+  .col-xs-8
+    div data={ ng_include: "'products/_header.html'" }
+
+    h1 Cart
+
+    .media data={ ng_repeat: "product in vm.products",
+                  ng_include: "'products/index.html'" }
+
+    ul.list-unstyled.row.main-navbar.text-center
+      li.col-xs-6: p
+        | (495)669-40-40
+      li.col-xs-6: p 1@elmarket.org
+
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
+  ui-view
