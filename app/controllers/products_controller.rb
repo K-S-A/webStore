@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
+  include Cacheable
+
   def index
-    @products = Product.search(params[:name], [], false)
+    @products = Product.search(params[:name], nil)
   end
 
   def show
@@ -8,11 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.exact_search(params[:name])
-
-    if @products.size < Product::MAX_SEARCH_COUNT
-      @products += Product.search(params[:name], @products.map(&:id))
-    end
+    @products = Product.search(params[:name])
 
     render 'index'
   end

@@ -13,6 +13,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', '~> 4.1'
+gem 'redis', '~> 3.3'
+gem 'redis-namespace', '~> 1.5'
+gem 'redis-rails', '~> 4.0'
+gem 'redis-rack-cache', '~> 1.2'
 
 group :development, :test do
   gem 'byebug'
