@@ -12,6 +12,7 @@ angular.module('mainApp').factory 'Product', [
 
     Product.selected = ''
     Product.all = []
+    Product.found = []
     Product.current = {}
 
     Product.search = (name) ->

@@ -6,6 +6,9 @@
 
     h1 Cart
 
+    form.form-inline data={ ng_include: "'cart/_search_form.html'",
+                            ng_submit: "vm.startSearch()" }
+
     .media data={ ng_repeat: "product in vm.products",
                   ng_include: "'products/index.html'" }
 

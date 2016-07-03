@@ -41,7 +41,7 @@ angular.module('mainApp', [
       .state 'cart.details',
         url: '/details'
         templateUrl: 'cart/index.html'
-        controller: 'ProductsCtrl as vm'
+        controller: 'SearchCtrl as vm'
       .state 'cart.search',
         url: '/search'
         templateUrl: 'products/search.html'
