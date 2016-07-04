@@ -9,6 +9,9 @@ angular.module('mainApp').controller 'SearchCtrl', [
     vm.category = 'all'
     vm.products = Product.found
 
+    vm.findByCategory = ->
+      Product.findByCategory(vm.search, vm.searchBy, vm.category)
+
 #    vm.searchProduct = (name) ->
 #      Product.search(name)
 

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   include Cacheable
 
   def index
-    @products = Product.search(params[:name], nil)
+    @products = Product.order(:name).by_category(params[:category]).search(params[:value], params[:type], nil)
   end
 
   def show
@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:name])
+    @products = Product.order(:name).search(params[:value], params[:type])
 
     render 'index'
   end

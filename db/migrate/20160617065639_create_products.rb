@@ -3,6 +3,8 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :name
       t.string :img_link
+      t.string :code
+      t.string :category
 
       t.timestamps null: false
     end

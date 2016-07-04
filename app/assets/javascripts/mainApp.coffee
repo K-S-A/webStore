@@ -51,7 +51,7 @@ angular.module('mainApp', [
     $urlRouterProvider.otherwise '/'
 
     $translateProvider
-      .preferredLanguage('en')
+      .preferredLanguage('ru')
       .useSanitizeValueStrategy('sanitizeParameters')
       .useLocalStorage()
       .useStaticFilesLoader({

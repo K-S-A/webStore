@@ -1,0 +1,10 @@
+a.pull-left data={ ui_sref: "product({id: product.id})" }
+  img.media-object { height="35"
+                     alt="{{ product.name }}"
+                     data={ ng_src: "{{ product.imgLink }}" } }
+.media-body
+  a data={ ng_bind: "product.name",
+           ui_sref: "product({id: product.id})" }
+  span.pull-left.code data={ ng_bind: "product.code" }
+  a.pull-right href="#"
+    span.glyphicon.glyphicon-plus.hover

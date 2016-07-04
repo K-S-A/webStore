@@ -76,4 +76,6 @@ products = [
 
 Product.create(products) do |product|
   product.img_link = 'https://res.cloudinary.com/divwgxspq/image/upload/v1466184285/70MA3X_vby7od.jpg'
+  product.category = %w(1 2).sample
+  product.code = rand(999999)
 end

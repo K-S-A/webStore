@@ -1,16 +1,23 @@
 class Product < ActiveRecord::Base
   MAX_SEARCH_COUNT = 8
 
-  scope :exact_search, -> (name) { order(:name).where('name ILIKE ?', "%#{name}%") }
-  scope :approx_search, -> (names) { order(:name).where('name ILIKE ANY ( array[?] )', names) }
+  scope :exact_search, -> (name, type) { type == 'name' ? where('name ILIKE ?', "%#{name}%") : where("#{type}" => name) }
+  scope :approx_search, -> (names) { where('name ILIKE ANY ( array[?] )', names) }
+  scope :by_category, -> (category) { where(category: category) if category }
 
   class << self
-    def search(name, count = MAX_SEARCH_COUNT)
-      trim!(name)
-      products = exact_search(name).limit(count)
-      products += approx_search(separated(name))
-        .where.not(id: products.map(&:id))
-        .limit(count.try(:-, products.size))
+    def search(value, type, count = MAX_SEARCH_COUNT)
+      return unless value.present?
+      type ||= 'name'
+      trim!(value)
+      products = exact_search(value, type).limit(count)
+      if type == 'name'
+        products += approx_search(separated(value))
+          .where.not(id: products.map(&:id))
+          .limit(count.try(:-, products.size))
+      end
+
+      products
     end
 
     private

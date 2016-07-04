@@ -16,11 +16,11 @@ angular.module('mainApp').factory 'Product', [
     Product.current = {}
 
     Product.search = (name) ->
-      Product.$get('products/search', name: name)
+      Product.$get('products/search', value: name)
 
     Product.fullSearch = ->
       if Product.selected.length
-        Product.query(name: Product.selected).then (data) ->
+        Product.query(value: Product.selected).then (data) ->
           angular.copy(data, Product.all)
       else
         angular.copy([], Product.all)
@@ -28,6 +28,15 @@ angular.module('mainApp').factory 'Product', [
     Product.find = (id) ->
       Product.get(id: id).then (data) ->
         Product.current = data
+
+    Product.findByCategory = (value, type, category) ->
+      params =
+        value: value
+        type: type
+      params.category = category if category != 'all'
+
+      Product.query(params).then (data) ->
+        angular.copy(data, Product.found)      
 
     Product
 ]
