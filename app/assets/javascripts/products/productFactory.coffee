@@ -13,6 +13,9 @@ angular.module('mainApp').factory 'Product', [
 
     Product.selected = localStorageService.get('selected') || ''
     Product.all = localStorageService.get('products.selected') || []
+    Product.search_text = localStorageService.get('search') || ''
+    Product.searchBy = localStorageService.get('searchBy') || 'name'
+    Product.category = localStorageService.get('category') || 'all'
     Product.found = []
     Product.current = {}
 
@@ -38,6 +41,9 @@ angular.module('mainApp').factory 'Product', [
 
       Product.query(params).then (data) ->
         angular.copy(data, Product.found)
+
+    Product.to_lstorage = (key, value) ->
+      localStorageService.set(key, value)
 
     Product
 ]

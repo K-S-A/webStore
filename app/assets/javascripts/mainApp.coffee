@@ -43,11 +43,11 @@ angular.module('mainApp', [
       .state 'cart.details',
         url: '/details'
         templateUrl: 'cart/index.html'
-        controller: 'SearchCtrl as vm'
+        controller: 'CartCtrl as vm'
       .state 'cart.search',
         url: '/search'
-        templateUrl: 'products/search.html'
-        controller: 'ProductsCtrl as vm'
+        templateUrl: 'cart/search.html'
+        controller: 'SearchCtrl as vm'
 
 
     $urlRouterProvider.otherwise '/'

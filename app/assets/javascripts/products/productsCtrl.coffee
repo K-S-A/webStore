@@ -18,7 +18,7 @@ angular.module('mainApp').controller 'ProductsCtrl', [
       if vm.selected.id
         $state.go('product', id: vm.selected.id)
       else
-        Product.findByName(vm.selected)
+        Product.fullSearch(vm.selected)
 
     vm.to_lstorage = ->
       Product.to_lstorage('selected', vm.selected.name || vm.selected)

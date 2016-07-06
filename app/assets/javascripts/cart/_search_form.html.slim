@@ -1,11 +1,13 @@
 .form-group
   .input-group.input-group-sm
-    select.form-control data={ ng_model: 'vm.searchBy' }
+    select.form-control data={ ng_model: 'vm.searchBy',
+                               ng_change: 'vm.findByCategory()' }
       option value="name" Search by name
       option value="code" Search by code
 .form-group
   .input-group.input-group-sm
-    select.form-control data={ ng_model: 'vm.category' }
+    select.form-control data={ ng_model: 'vm.category',
+                               ng_change: 'vm.findByCategory()' }
       option value="all" All categories
       option value="1" Materials
       option value="2" Equipment
@@ -15,4 +17,5 @@
                          type="text"
                          ng-model="vm.search" }
     span.input-group-btn
-      button.btn.btn-default translate="SEARCH_BUTTON" type="submit"
+      button.btn.btn-default { type="submit"
+                               data={ translate: "SEARCH_BUTTON" } }

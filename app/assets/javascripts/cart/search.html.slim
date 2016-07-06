@@ -4,11 +4,13 @@
   .col-xs-8
     div data={ ng_include: "'products/_header.html'" }
 
-    h1 Cart
-    button.btn.btn-success data={ ui_sref: "cart.search" } Add product to cart
+    h1 Search form
+    button.btn.btn-info data={ ui_sref: "cart.details" } Back to cart
+    form.form-inline data={ ng_include: "'cart/_search_form.html'",
+                            ng_submit: "vm.findByCategory()" }
 
-    .media data={ ng_repeat: "item in vm.order.items",
-                  ng_include: "'cart/item.html'" }
+    .media data={ ng_repeat: "product in vm.products",
+                  ng_include: "'cart/products.html'" }
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

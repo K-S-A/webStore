@@ -1,0 +1,15 @@
+input.pull-left { type="number"
+                  min="1"
+                  max="999"
+                  data={ ng_model: "item.count",
+                         ng_change: "vm.updateOrder()"} }
+
+a.pull-left data={ ui_sref: "product({id: item.product.id})" }
+  img.media-object { height="35"
+                     alt="{{ item.product.name }}"
+                     data={ ng_src: "{{ item.product.imgLink }}" } }
+.media-body
+  a data={ ng_bind: "::item.product.name",
+           ui_sref: "product({id: item.product.id})" }
+  span.pull-left.code data={ ng_bind: "item.product.code" }
+  span.text-danger.glyphicon.glyphicon-minus.pull-right.hover data={ ng_click: "vm.removeItem(item)" }
