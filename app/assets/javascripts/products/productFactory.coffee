@@ -3,15 +3,16 @@
 angular.module('mainApp').factory 'Product', [
   'railsResourceFactory'
   'railsSerializer'
-  (railsResourceFactory, railsSerializer) ->
+  'localStorageService'
+  (railsResourceFactory, railsSerializer, localStorageService) ->
     Product = railsResourceFactory(
       url: 'products/{{id}}'
       name: 'product'
       serializer: railsSerializer ->
         @only 'id', 'name', 'img_link')
 
-    Product.selected = ''
-    Product.all = []
+    Product.selected = localStorageService.get('selected') || ''
+    Product.all = localStorageService.get('products.selected') || []
     Product.found = []
     Product.current = {}
 
@@ -36,7 +37,7 @@ angular.module('mainApp').factory 'Product', [
       params.category = category if category != 'all'
 
       Product.query(params).then (data) ->
-        angular.copy(data, Product.found)      
+        angular.copy(data, Product.found)
 
     Product
 ]

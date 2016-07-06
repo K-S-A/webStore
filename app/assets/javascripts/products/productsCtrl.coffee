@@ -2,7 +2,7 @@
 
 angular.module('mainApp').controller 'ProductsCtrl', [
   'Product',
-  '$state'
+  '$state',
   (Product, $state) ->
     vm = this
     vm.selected = Product.selected
@@ -14,10 +14,14 @@ angular.module('mainApp').controller 'ProductsCtrl', [
 
     vm.startSearch = ->
       Product.selected = vm.selected
+
       if vm.selected.id
         $state.go('product', id: vm.selected.id)
       else
-        Product.fullSearch()
+        Product.findByName(vm.selected)
+
+    vm.to_lstorage = ->
+      Product.to_lstorage('selected', vm.selected.name || vm.selected)
 
     vm
 ]

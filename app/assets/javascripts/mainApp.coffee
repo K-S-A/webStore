@@ -12,11 +12,13 @@ angular.module('mainApp', [
   'ngCookies'
   'ngSanitize'
   'pascalprecht.translate'
+  'LocalStorageModule'
 ]).config([
   '$stateProvider'
   '$urlRouterProvider'
   '$translateProvider'
-  ($stateProvider, $urlRouterProvider, $translateProvider) ->
+  'localStorageServiceProvider'
+  ($stateProvider, $urlRouterProvider, $translateProvider, localStorageServiceProvider) ->
     $stateProvider
       .state 'home',
         url: '/'
@@ -58,6 +60,9 @@ angular.module('mainApp', [
         prefix: '/languages/',
         suffix: '.json'
       })
+
+    localStorageServiceProvider
+      .setPrefix('elektromarket')
 
     return
 

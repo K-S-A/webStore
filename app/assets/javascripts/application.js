@@ -16,6 +16,7 @@
 //= require angular-translate
 //= require angular-sanitize
 //= require angular-cookies
+//= require angular-local-storage
 //= require angular-translate-storage-cookie
 //= require angular-translate-storage-local
 //= require angular-translate-loader-static-files
