@@ -11,7 +11,7 @@ angular.module('mainApp').factory 'Order', [
       serializer: railsSerializer ->
         @only 'id')
 
-    Order.current = localStorageService.get('order') || {}
+    Order.current = localStorageService.get('order') || {items: []}
 
     Order.addItem = (product, count) ->
       Order.current.items ||= []
