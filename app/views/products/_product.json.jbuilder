@@ -1,1 +1,1 @@
-json.(product, :id, :name, :img_link, :code)
+json.(product, :id, :name, :img_link, :code, :scu, :price)

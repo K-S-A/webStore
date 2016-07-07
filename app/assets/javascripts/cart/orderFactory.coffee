@@ -35,5 +35,10 @@ angular.module('mainApp').factory 'Order', [
     Order.to_lstorage = (key, value) ->
       localStorageService.set(key, value)
 
+    Order.total = ->
+      Order.current.items.reduce (a, e) ->
+        a += e.count * e.product.price
+      , 0
+
     Order
 ]

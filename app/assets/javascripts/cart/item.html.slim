@@ -1,15 +1,37 @@
-input.pull-left { type="number"
-                  min="1"
-                  max="999"
-                  data={ ng_model: "item.count",
-                         ng_change: "vm.updateOrder()"} }
-
-a.pull-left data={ ui_sref: "product({id: item.product.id})" }
-  img.media-object { height="35"
-                     alt="{{ item.product.name }}"
-                     data={ ng_src: "{{ item.product.imgLink }}" } }
-.media-body
-  a data={ ng_bind: "::item.product.name",
-           ui_sref: "product({id: item.product.id})" }
-  span.pull-left.code data={ ng_bind: "item.product.code" }
-  span.text-danger.glyphicon.glyphicon-minus.pull-right.hover data={ ng_click: "vm.removeItem(item)" }
+thead
+  tr.text-center
+    th №
+    th.hover data={ ng_click: "vm.sortBy('product.code')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.code', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.code', true)}" }
+      | Код
+    th.hover data={ ng_click: "vm.sortBy('product.name')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.name', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.name', true)}" }
+      | Номенклатура
+    th.hover data={ ng_click: "vm.sortBy('count')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('count', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('count', true)}" }
+      | Количество
+    th.hover data={ ng_click: "vm.sortBy('product.scu')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.scu', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.scu', true)}" }
+      | Ед.
+    th.hover data={ ng_click: "vm.sortBy('product.price')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.price', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.price', true)}" }
+      | Цена
+    th.hover data={ ng_click: "vm.sortBy(vm.getTotal)" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered(vm.getTotal, false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered(vm.getTotal, true)}" }
+      | Сумма
+    th
+tbody
+  tr data={ ng_repeat: "item in vm.order.items | orderBy : vm.property : vm.reversed" }
+    th data={ ng_bind: "($index + 1)" }
+    td data={ ng_bind: "::item.product.code" }
+    td data={ ng_bind: "::item.product.name" }
+    td
+      input.pull-left { type="number"
+                        min="1"
+                        max="999"
+                        data={ ng_model: "item.count",
+                               ng_change: "vm.updateOrder()"} }
+    td data={ ng_bind: "::item.product.scu" }
+    td data={ ng_bind: "::item.product.price" }
+    td data={ ng_bind: "vm.getTotal(item) | currency : '' : 2" }
+    td: span.text-danger.glyphicon.glyphicon-minus.pull-right.hover data={ ng_click: "vm.removeItem(item)" }

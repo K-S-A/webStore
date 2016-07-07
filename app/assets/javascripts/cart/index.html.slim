@@ -5,10 +5,27 @@
     div data={ ng_include: "'products/_header.html'" }
 
     h1 Cart
-    button.btn.btn-success data={ ui_sref: "cart.search" } Add product to cart
+    button.btn.btn-success data={ ui_sref: "cart.search" } Add products to cart
 
-    .media data={ ng_repeat: "item in vm.order.items",
-                  ng_include: "'cart/item.html'" }
+    table.table.table-hover.table-condensed data={ ng_include: "'cart/item.html'" }
+    .row
+      .form-group.col-sm-8
+        #comment.input-group
+          label Comment
+          textarea.form-control { placeholder="Enter comments here..."
+                                  data={ ng_model: "vm.order.comment",
+                                         ng_change: "vm.updateOrder()" } }
+      .col-sm-4
+        form.form-horizontal
+          .form-group
+            label.col-sm-6.control-label Всего (руб.):
+            .col-sm-6
+              p.form-control-static data={ ng_bind: "vm.total | currency : '' : 2" }
+          .form-group
+            label.col-sm-6.control-label НДС (в т.ч.):
+            .col-sm-6
+              p.form-control-static data={ ng_bind: "(vm.total * 18 / 118.0) | currency : '' : 2" }
+
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

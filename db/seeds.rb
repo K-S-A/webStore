@@ -78,4 +78,6 @@ Product.create(products) do |product|
   product.img_link = 'https://res.cloudinary.com/divwgxspq/image/upload/v1466184285/70MA3X_vby7od.jpg'
   product.category = %w(1 2).sample
   product.code = rand(999999)
+  product.price = rand(99999) / 100.0
+  product.scu = 'шт'
 end

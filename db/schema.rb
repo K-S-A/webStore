@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20160617065639) do
     t.string   "img_link"
     t.string   "code"
     t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "price",      precision: 8, scale: 2
+    t.string   "scu"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end
