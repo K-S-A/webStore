@@ -4,15 +4,17 @@
   .col-xs-8
     div data={ ng_include: "'products/_header.html'" }
 
-    h1 Cart
-    button.btn.btn-success data={ ui_sref: "cart.search" } Add products to cart
+    / h1 Cart
 
     table.table.table-hover.table-condensed data={ ng_include: "'cart/item.html'" }
+    
+    button.btn.btn-block.btn-success data={ ui_sref: "cart.search" } Поиск/добавление товара
+
     .row
       .form-group.col-sm-8
         #comment.input-group
-          label Comment
-          textarea.form-control { placeholder="Enter comments here..."
+          label Комментарий к заказу:
+          textarea.form-control { placeholder="Введите текст..."
                                   data={ ng_model: "vm.order.comment",
                                          ng_change: "vm.updateOrder()" } }
       .col-sm-4

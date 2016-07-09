@@ -2,20 +2,21 @@
   .input-group.input-group-sm
     select.form-control data={ ng_model: 'vm.searchBy',
                                ng_change: 'vm.findByCategory()' }
-      option value="name" Search by name
-      option value="code" Search by code
+      option value="name" Искать по имени
+      option value="code" искать по коду
 .form-group
   .input-group.input-group-sm
     select.form-control data={ ng_model: 'vm.category',
                                ng_change: 'vm.findByCategory()' }
-      option value="all" All categories
-      option value="1" Materials
-      option value="2" Equipment
+      option value="all" Все категории
+      option value="1" Материалы
+      option value="2" Оборудование
 .form-group
   .input-group.input-group-sm.search-box
     input.form-control { placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"
                          type="text"
                          ng-model="vm.search" }
-    span.input-group-btn
+    span#search-btn-group.input-group-btn
       button.btn.btn-default { type="submit"
                                data={ translate: "SEARCH_BUTTON" } }
+      button.btn.btn-info data={ ui_sref: "cart.details" } Вернуться к редактированию заказа

@@ -28,5 +28,5 @@
 //= require angular-bootstrap
 //= require angular-xeditable
 //= require ngInfiniteScroll
-//= require mainApp
+//= require main-app
 //= require_tree .

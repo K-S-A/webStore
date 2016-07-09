@@ -69,11 +69,15 @@ angular.module('mainApp', [
 ]).run([
   '$rootScope'
   '$state'
-  ($rootScope, $state) ->
+  'Order'
+  ($rootScope, $state, Order) ->
     $rootScope.$on("$stateChangeError", console.log.bind(console))
 
     $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) ->
       if toState.redirectTo
         event.preventDefault()
-        $state.go(toState.redirectTo, toParams)
+        if toState.redirectTo is 'cart.details' && !Order.current.items.length
+          $state.go('cart.search')
+        else
+          $state.go(toState.redirectTo, toParams)
 ])
