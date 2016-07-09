@@ -12,9 +12,9 @@ angular.module('mainApp').controller 'SearchCtrl', [
 
     vm.findByCategory = ->
       Product.findByCategory(vm.search, vm.searchBy, vm.category)
-      Order.to_lstorage('search', vm.search)
-      Order.to_lstorage('searchBy', vm.searchBy)
-      Order.to_lstorage('category', vm.category)
+      Product.to_lstorage('search', vm.search)
+      Product.to_lstorage('searchBy', vm.searchBy)
+      Product.to_lstorage('category', vm.category)
 
     vm.addToOrder = (product, count) ->
       Order.addItem(product, count)

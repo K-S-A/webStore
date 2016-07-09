@@ -3,7 +3,7 @@ a.pull-left data={ ui_sref: "product({id: product.id})" }
                      alt="{{ product.name }}"
                      data={ ng_src: "{{ product.imgLink }}" } }
 .media-body
-  a data={ ng_bind: "product.name",
+  a data={ ng_bind: "::product.name",
            ui_sref: "product({id: product.id})" }
-  span.pull-left.code data={ ng_bind: "product.code" }
-  span.text-success.glyphicon.glyphicon-plus.pull-right.hover data={ ng_click: "vm.addToOrder(product, 1)" }
+  span.pull-left.code data={ ng_bind: "::product.code" }
+  span.text-success.glyphicon.glyphicon-plus.pull-right.hover data={ my_add_product: '' }

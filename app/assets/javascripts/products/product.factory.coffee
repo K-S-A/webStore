@@ -43,6 +43,7 @@ angular.module('mainApp').factory 'Product', [
         angular.copy(data, Product.found)
 
     Product.to_lstorage = (key, value) ->
+      Product[key] = value
       localStorageService.set(key, value)
 
     Product
