@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module('mainApp').controller 'ProductsCtrl', [
-  'Product',
-  '$state',
+  'Product'
+  '$state'
   (Product, $state) ->
     vm = this
     vm.selected = Product.selected
