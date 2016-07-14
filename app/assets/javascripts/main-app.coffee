@@ -48,6 +48,10 @@ angular.module('mainApp', [
         url: '/search'
         templateUrl: 'cart/search.html'
         controller: 'SearchCtrl as vm'
+      .state 'checkout',
+        url: '/checkout'
+        templateUrl: 'checkout/index.html'
+        controller: 'CheckoutCtrl as vm'
 
 
     $urlRouterProvider.otherwise '/'

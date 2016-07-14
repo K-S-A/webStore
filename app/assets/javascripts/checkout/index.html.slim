@@ -1,0 +1,77 @@
+.container-fluid
+  .col-xs-10
+    .receipt-container
+      p.checkout-note.text-center
+        span Внимание! Оплата данного счета означает согласие с условиями поставки товара. Уведомление об оплате
+        span обязательно, в противном случае не гарантируется наличие товара на складе. Товар отпускается по факту
+        span прихода денег на р/с Поставщика, самовывозом, при наличии доверенности и паспорта.
+      table.table.table-bordered
+        tbody
+          tr
+            td colspan="4" rowspan="2" АО "РАЙФФАЙЗЕНБАНК" Г. МОСКВА
+          tr
+            td БИК
+            td 44525700
+          tr
+            td.desc colspan="4" Банк получателя
+            td Сч. №
+            td 30101810200000000700
+          tr
+            td ИНН
+            td 7728322944
+            td КПП
+            td 772801001
+            td rowspan="3" Сч. №
+            td rowspan="3" 40702810700000013833
+          tr
+            td colspan="4" Общество с ограниченной ответственностью "Электромаркет"
+          tr
+            td.desc colspan="4" Получатель
+      p.checkout-title Счет на оплату № 397 от 12 июля 2016 г.
+
+      .col-xs-2
+        p Поставщик:
+      .col-xs-10
+        p: strong Общество с ограниченной ответственностью "Электромаркет", ИНН 7728322944, КПП 772801001, 117279, г. Москва, ул. Миклухо-Маклая, д.34, оф.26, тел.: (495) 585-51-82
+      .col-xs-2
+        p Покупатель:
+      .col-xs-10
+        p: strong ___________________________________________________________________________
+      table.table.table-bordered.order-items-list
+        thead
+          tr
+            th.text-center №
+            th.text-center Товары (работы, услуги)
+            th.text-center Кол-во
+            th.text-center Ед.
+            th.text-center Цена
+            th.text-center Сумма
+        tbody
+          tr data={ ng_repeat: "item in vm.order.items" }
+            th.text-center data={ ng_bind: "::($index + 1)" }
+            td data={ ng_bind: "::item.product.name" }
+            td.text-right data={ ng_bind: "::item.count" }
+            td.text-left data={ ng_bind: "::item.product.scu" }
+            td.text-right data={ ng_bind: "::item.product.price" }
+            td.text-right data={ ng_bind: "::vm.getTotal(item) | currency : '' : 2" }
+      .col-xs-10
+        p.text-right: strong Итого:
+        p.text-right: strong Сумма НДС:
+        p.text-right: strong Всего к оплате:
+      .col-xs-2
+        p.text-right: strong data={ ng_bind: "::vm.total | currency : '' : 2" }
+        p.text-right: strong data={ ng_bind: "::(vm.total * 18 / 118.0) | currency : '' : 2" }
+        p.text-right: strong data={ ng_bind: "::vm.total | currency : '' : 2" }
+
+      .receipt-result
+        p Всего наименований {{::vm.order.items.length}}, на сумму {{::vm.total | currency : '' : 2}} руб.
+        p: strong data={ ng_bind: "::vm.total | num2word" }
+      .receipt-footer
+        img src="/images/receipt-footer.png"
+  .col-xs-2
+    button.btn.btn-block.btn-primary Отправить на почту
+    button.btn.btn-block.btn-primary Загрузить в формате .xls
+    button.btn.btn-block.btn-primary Загрузить в формате .pdf
+    button.btn.btn-block.btn-primary Печать
+
+
