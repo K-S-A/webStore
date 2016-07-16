@@ -8,6 +8,6 @@ angular.module('mainApp').directive 'myRemoveProduct', [
       element.on 'click', ->
         Order.removeItem(scope.item)
         scope.$apply ->
-          scope.vm.total = Order.total()
+          scope.vm.total = Order.total(scope.vm.order)
 
 ]

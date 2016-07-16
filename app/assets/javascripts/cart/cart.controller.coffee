@@ -5,7 +5,7 @@ angular.module('mainApp').controller 'CartCtrl', [
   (Order) ->
     vm = this
     vm.order = Order.current
-    vm.total = Order.total()
+    vm.total = Order.total(vm.order)
     vm.property = null
     vm.reversed = false
 
@@ -14,7 +14,7 @@ angular.module('mainApp').controller 'CartCtrl', [
 
     vm.updateOrder = ->
       Order.to_lstorage('order', Order.current)
-      vm.total = Order.total()
+      vm.total = Order.total(vm.order)
 
     vm.sortBy = (property) ->
       if vm.property is property
@@ -28,7 +28,7 @@ angular.module('mainApp').controller 'CartCtrl', [
         vm.reversed = false
 
     vm.getTotal = (item) ->
-      item.count * item.product.price
+      Order.getItemTotal(item)
 
     vm.isOrdered = (property, reversed) ->
       vm.property is property && vm.reversed is reversed

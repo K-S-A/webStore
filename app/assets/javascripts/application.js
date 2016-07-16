@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require angular
+//= require angular-i18n/angular-locale_ru-ru.js
 //= require angular-translate
 //= require angular-sanitize
 //= require angular-cookies
@@ -28,5 +29,7 @@
 //= require angular-bootstrap
 //= require angular-xeditable
 //= require ngInfiniteScroll
+//= require pdfmake
+//= require pdfmake/build/vfs_fonts.js
 //= require main-app
 //= require_tree .

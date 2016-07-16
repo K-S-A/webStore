@@ -32,7 +32,9 @@
     "angular-translate-loader-static-files": "^2.11.0",
     "angular-translate-storage-local": "^2.11.0",
     "angular-sanitize": "^1.5.7",
-    "angular-local-storage": "^0.2.7"
+    "angular-local-storage": "^0.2.7",
+    "pdfmake": "^0.1.20",
+    "angular-i18n": "^1.5.7"
   },
   "resolutions": {
     "angular": ">=1.2.26 <1.6"

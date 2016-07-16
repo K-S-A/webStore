@@ -27,7 +27,7 @@
             td colspan="4" Общество с ограниченной ответственностью "Электромаркет"
           tr
             td.desc colspan="4" Получатель
-      p.checkout-title Счет на оплату № 397 от 12 июля 2016 г.
+      p.checkout-title data={ ng_bind: '::vm.receiptTitle' }
 
       .col-xs-2
         p Поставщик:
@@ -69,9 +69,8 @@
       .receipt-footer
         img src="/images/receipt-footer.png"
   .col-xs-2
-    button.btn.btn-block.btn-primary Отправить на почту
-    button.btn.btn-block.btn-primary Загрузить в формате .xls
-    button.btn.btn-block.btn-primary Загрузить в формате .pdf
-    button.btn.btn-block.btn-primary Печать
+    button.btn.btn-block.btn-primary disabled='' Отправить на почту
+    button.btn.btn-block.btn-primary disabled='' Загрузить в формате .xls
+    button.btn.btn-block.btn-primary data={ my_download_pdf: 'vm.order' } Загрузить в формате .pdf
+    button.btn.btn-block.btn-primary data={ my_print_pdf: 'vm.order' } Печать
     button.btn.btn-block.btn-danger data={ ui_sref: "cart.details" } Редактировать заказ
-

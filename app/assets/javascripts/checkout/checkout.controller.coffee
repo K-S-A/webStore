@@ -6,10 +6,11 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
   (Product, Order) ->
     vm = this
     vm.order = Order.current
-    vm.total = Order.total()
+    vm.total = Order.total(vm.order)
+    vm.receiptTitle = Order.buildTitle(vm.order)
 
     vm.getTotal = (item) ->
-      item.count * item.product.price
+      Order.getItemTotal(item)
 
     vm
 ]
