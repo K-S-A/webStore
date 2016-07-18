@@ -12,7 +12,7 @@ gem 'angular-rails-templates', '~> 1.0'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise', '~> 4.1'
+gem 'devise', '~> 4.2'
 gem 'redis', '~> 3.3'
 gem 'redis-namespace', '~> 1.5'
 gem 'redis-rails', '~> 4.0'
@@ -31,6 +31,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rubocop', '~> 0.39.0'
+  gem 'any_login', '~> 0.9'
 end
 
 group :test do
