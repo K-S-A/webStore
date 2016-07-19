@@ -7,49 +7,50 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body data={ ng_app: 'mainApp' }
+    div data={ ng_include: "'auth/_nav.html'", ng_controller: "AuthCtrl as vm" }
 
-    nav.navbar.navbar-default
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle.collapsed type="button" aria-expanded="false" data={ toggle: "collapse", target: "#navbar-collapse" }
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand data={ ui_sref: "home" } ЭЛЕКТРОМАРКЕТ
+    / nav.navbar.navbar-default data={ ng_controller: "" }
+    /   .container-fluid
+    /     .navbar-header
+    /       button.navbar-toggle.collapsed type="button" aria-expanded="false" data={ toggle: "collapse", target: "#navbar-collapse" }
+    /         span.sr-only Toggle navigation
+    /         span.icon-bar
+    /         span.icon-bar
+    /         span.icon-bar
+    /       a.navbar-brand data={ ui_sref: "home" } ЭЛЕКТРОМАРКЕТ
         
-        #navbar-collapse.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li.active: a href="#" Link
-            li: a href="#" Link1
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                | Dropdown
-                span.caret
-          ul.dropdown-menu
-            li: a href="#" Action
-            li: a href="#" Another action
-            li: a href="#" Something else here
-            li.divider role="separator"
-            li: a href="#" Separated link
-            li.divider role="separator"
-            li: a href="#" One more separated link
-          form.navbar-form.navbar-left role="search"
-            .form-group
-              input.form-control type="text" placeholder="Search"
-            button.btn.btn-default type="submit" Submit
-          ul.nav.navbar-nav.navbar-right
-            li: a href="#" Link
-            li.dropdown
-              a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                | Dropdown
-                span.caret
-              ul.dropdown-menu
-                li: a href="#" Action
-                li: a href="#" Another action
-                li: a href="#" Something else here
-                li.divider role="separator"
-                li: a href="#" Separated link
+    /     #navbar-collapse.collapse.navbar-collapse
+    /       ul.nav.navbar-nav
+    /         li.active: a href="#" Link
+    /         li: a href="#" Link1
+    /         li.dropdown
+    /           a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+    /             | Dropdown
+    /             span.caret
+    /       ul.dropdown-menu
+    /         li: a href="#" Action
+    /         li: a href="#" Another action
+    /         li: a href="#" Something else here
+    /         li.divider role="separator"
+    /         li: a href="#" Separated link
+    /         li.divider role="separator"
+    /         li: a href="#" One more separated link
+    /       form.navbar-form.navbar-left role="search"
+    /         .form-group
+    /           input.form-control type="text" placeholder="Search"
+    /         button.btn.btn-default type="submit" Submit
+    /       ul.nav.navbar-nav.navbar-right
+    /         li: a href="#" Link
+    /         li.dropdown
+    /           a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+    /             | Dropdown
+    /             span.caret
+    /           ul.dropdown-menu
+    /             li: a href="#" Action
+    /             li: a href="#" Another action
+    /             li: a href="#" Something else here
+    /             li.divider role="separator"
+    /             li: a href="#" Separated link
 
 
     ui-view

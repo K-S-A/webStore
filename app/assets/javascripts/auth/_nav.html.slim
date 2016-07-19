@@ -1,0 +1,39 @@
+nav.navbar.navbar-default role="message"
+  .auth-msg data-ng-show='vm.user.alert || vm.user.notice'
+    .alert role="alert" data={ ng_class: "{'alert-danger': vm.user.alert, 'alert-info': vm.user.notice}" }
+      p.text-center data={ ng_bind: "vm.user.alert || vm.user.notice" }
+
+  .navbar-header
+    button.navbar-toggle type="button" data={ ng_click: "collapsed = !collapsed" }
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand data={ ui_sref: "home" } ЭЛЕКТРОМАРКЕТ
+  .collapse.navbar-collapse data={ ng_class: "{ in: collapsed }" }
+    / ul.nav.navbar-nav
+    /   li
+    /     a data={ ui_sref: "tournaments" }
+    /       | Home
+    form.navbar-form.navbar-right role="login" data={ ng_hide: "vm.user.id",
+                                                      my_login_user: "vm.user" }
+      .form-group.input-group-sm
+        label.sr-only for="inn" ИНН
+        input#inn.form-control name="inn" type="text" placeholder="ИНН" data={ ng_model: "vm.user.inn" }
+      .form-group.input-group-sm
+        label.sr-only for="password" Пароль
+        input#password.form-control name="password" type="password" placeholder="Пароль" data={ ng_model: "vm.user.password" }
+      button.btn.btn-default.btn-sm type="submit" Войти
+      button.btn.btn-default.btn-sm type="button" Регистрация
+    ul.nav.navbar-nav.navbar-right
+      li.hover data={ is_open: "isopen", ng_show: "vm.user.id", uib_dropdown: "" }
+        a type="button" data={ uib_dropdown_toggle: "" }
+          | ИНН: "{{ vm.user.inn }}"
+          span.caret
+        ul aria-labelledby="single-button" role="menu" data={ uib_dropdown_menu: "" }
+          li role="menuitem"
+            a data={ ui_sref: "cart" } Новый заказ
+          li role="menuitem"
+            a data={ ui_sref: "home" } Заказы
+          li.divider
+          li role="menuitem"
+            a data={ my_logout_user: "vm.user" } Выход
