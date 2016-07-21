@@ -1,0 +1,1 @@
+json.(user, :id, :inn, :kpp, :ogrn, :company_name, :head, :init_date)

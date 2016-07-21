@@ -52,6 +52,10 @@ angular.module('mainApp', [
         url: '/checkout'
         templateUrl: 'checkout/index.html'
         controller: 'CheckoutCtrl as vm'
+      .state 'registration',
+        url: '/registration'
+        templateUrl: 'auth/registration.html'
+        controller: 'AuthCtrl as vm'
 
 
     $urlRouterProvider.otherwise '/'

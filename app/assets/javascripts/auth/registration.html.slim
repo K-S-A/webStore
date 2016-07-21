@@ -1,0 +1,33 @@
+/ form data={ ng_submit: 'vm.register()' }
+/   input { type="text"
+/           placeholder="Введите ИНН..."
+/           data={ ng_model: 'vm.user.inn' } }
+/   button type="submit" Далее
+
+form.form-horizontal data={ ng_submit: 'vm.register()' }
+  .form-group
+    label.col-sm-3.control-label for="inn" placeholder="Введите ИНН..." ИНН
+    .col-sm-7
+      input#inn.form-control type="text" data={ ng_model: 'vm.user.inn' }
+  .form-group
+    label.col-sm-3.control-label for="company_name" Название компании
+    .col-sm-7
+      input#company_name.form-control type="text" data={ ng_model: 'vm.user.companyName' }
+  .form-group
+    label.col-sm-3.control-label for="company_head" Глава компании
+    .col-sm-7
+      input#company_head.form-control type="text" data={ ng_model: 'vm.user.head' }
+  .form-group
+    label.col-sm-3.control-label for="kpp" КПП
+    .col-sm-7
+      input#kpp.form-control type="text" data={ ng_model: 'vm.user.kpp' }
+  .form-group
+    label.col-sm-3.control-label for="ogrn" ОГРН
+    .col-sm-7
+      input#ogrn.form-control type="text" data={ ng_model: 'vm.user.ogrn' }
+  .form-group
+    label.col-sm-3.control-label for="init_date" Дата основания
+    .col-sm-7
+      input#init_date.form-control type="text" data={ ng_model: 'vm.user.initDate' }
+  .form-group
+    button.btn.btn-lg.btn-primary.col-sm-offset-2.col-sm-8 type="submit" Заполнить

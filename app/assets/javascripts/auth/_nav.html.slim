@@ -23,7 +23,7 @@ nav.navbar.navbar-default role="message"
         label.sr-only for="password" Пароль
         input#password.form-control name="password" type="password" placeholder="Пароль" data={ ng_model: "vm.user.password" }
       button.btn.btn-default.btn-sm type="submit" Войти
-      button.btn.btn-default.btn-sm type="button" Регистрация
+      button.btn.btn-default.btn-sm type="button" data={ ui_sref: 'registration' } Регистрация
     ul.nav.navbar-nav.navbar-right
       li.hover data={ is_open: "isopen", ng_show: "vm.user.id", uib_dropdown: "" }
         a type="button" data={ uib_dropdown_toggle: "" }
