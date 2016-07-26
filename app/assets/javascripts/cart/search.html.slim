@@ -4,12 +4,10 @@
   .col-xs-8
     div data={ ng_include: "'products/_header.html'" }
 
-    / h1 Search form
-
     form#detailed-search.form-inline data={ ng_include: "'cart/_search_form.html'",
                             ng_submit: "vm.findByCategory()" }
 
-    .media data={ ng_repeat: "product in vm.products",
+    .product-inline.media data={ ng_repeat: "product in vm.products",
                   ng_include: "'cart/products.html'" }
 
     ul.list-unstyled.row.main-navbar.text-center

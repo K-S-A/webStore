@@ -23,16 +23,7 @@ angular.module('mainApp').controller 'AuthCtrl', [
     #     auths.showAlert('Wrong user credentials. Check e-mail/password and try again.')
     #   return
 
-    vm.register = ->
-      User.fetchByInn(vm.user.inn).then (user) ->
-        vm.user = user
-        # console.log(user)
-      , (error) ->
-        console.log(error)
-    #   Auth.register(vm.user).then (user) ->
-    #     auths.setUser(user, 'You are registered successfully.')
-    #     $state.go 'tournaments'
-    #   return
+    # vm.register = ->
 
     # vm.logout = ->
     #   Auth.logout().then ->

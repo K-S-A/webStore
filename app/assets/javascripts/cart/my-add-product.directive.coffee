@@ -7,4 +7,4 @@ angular.module('mainApp').directive 'myAddProduct', ->
       if element.hasClass('glyphicon-plus')
         scope.vm.addToOrder(scope.product, 1)
         element.removeClass('glyphicon-plus')
-        element.addClass('glyphicon-ok')
+        element.addClass('added-to-card glyphicon-ok')

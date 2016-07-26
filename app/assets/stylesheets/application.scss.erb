@@ -117,3 +117,31 @@ table.order-items-list {
   position: absolute;
   width: 100%;
 }
+
+.add-to-cart-button {
+  @extend .text-success;
+  @extend .glyphicon;
+  @extend .pull-right;
+  @extend .hover;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.added-to-card {
+  visibility: visible;
+  opacity: 1;
+}
+
+.product-inline:hover .glyphicon-plus {
+  @extend .added-to-card;
+
+  font-size: 1.5em;
+  transition: transform 0.5s;
+  transform: rotate(360deg);
+  transition-delay: 0.5s;
+}
+
+form#register.form-horizontal {
+  display: none;
+}
