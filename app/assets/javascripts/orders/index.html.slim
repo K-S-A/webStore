@@ -1,0 +1,56 @@
+.container-fluid
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
+
+  .col-xs-8
+    / div data={ ng_include: "'products/_header.html'" }
+    / pre
+    /   | {{ vm.orders }}
+    h2 Заказы
+    / button data={ ng_click: "vm.create()" } Create
+    uib-accordion
+      div uib-accordion-group="" data={ ng_repeat: "order in vm.orders" }
+        uib-accordion-heading
+          span data={ ng_bind: "::order.stockNumber" }
+          // TODO: move to CSS
+          span.pull-right data={ ng_bind: "::order.createdAt | myDate : 'dd-MM-yyyy'" }
+          span.pull-right style="padding: 0 50px;" data={ ng_bind: "vm.getOrderTotal(order) | currency : '' : 2" } 
+        table.table.table-condensed.table-hover.table-responsive
+          thead
+            tr.text-center
+              th №
+              th.hover data={ ng_click: "vm.sortBy('product.code')" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.code', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.code', true)}" }
+                | Код
+              th.hover data={ ng_click: "vm.sortBy('product.name')" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.name', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.name', true)}" }
+                | Номенклатура
+              th.hover data={ ng_click: "vm.sortBy('quantity')" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('quantity', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('quantity', true)}" }
+                | Кол-во
+              th.hover data={ ng_click: "vm.sortBy('product.scu')" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.scu', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.scu', true)}" }
+                | Ед.
+              th.hover data={ ng_click: "vm.sortBy('price')" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('price', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('price', true)}" }
+                | Цена
+              th.hover data={ ng_click: "vm.sortBy(vm.getTotal)" }
+                span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered(vm.getTotal, false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered(vm.getTotal, true)}" }
+                | Сумма
+          tbody
+            tr data={ ng_repeat: "item in order.orderItems | orderBy : vm.property : vm.reversed" }
+              th data={ ng_bind: "($index + 1)" }
+              td data={ ng_bind: "::item.product.code" }
+              td data={ ng_bind: "::item.product.name" }
+              td data={ ng_bind: "::item.quantity" }
+              td data={ ng_bind: "::item.product.scu" }
+              td data={ ng_bind: "::item.price | currency : '' : 2" }
+              td data={ ng_bind: "vm.getTotal(item) | currency : '' : 2" }
+        p: strong Комментарий:
+        p data={ ng_bind: "::order.comment" }    
+
+    ul.list-unstyled.row.main-navbar.text-center
+      li.col-xs-6: p
+        | (495)669-40-40
+      li.col-xs-6: p 1@elmarket.org
+
+  .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
