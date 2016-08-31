@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :users do
     post 'fetch_by_inn', on: :collection
   end
+
+  resources :orders, only: [:index, :show, :create]
 end
