@@ -15,16 +15,12 @@ class OrdersController < ApplicationController
     render 'show'
   end
 
-  # def destroy
-  #   @order = current_user.orders.find(params[:id])
-  #   @order.destroy
-  # end
-
   private
 
   def order_params
     params.require(:order)
           .permit(:stock_number,
+                  :comment,
                   order_items_attributes: [:product_id, :quantity, :price])
   end
 end

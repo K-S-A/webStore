@@ -18,6 +18,7 @@ gem 'redis-namespace', '~> 1.5'
 gem 'redis-rails', '~> 4.0'
 gem 'redis-rack-cache', '~> 1.2'
 gem 'savon', '~> 2.11'
+gem 'figaro', '~> 1.1.1'
 
 group :development, :test do
   gem 'byebug'

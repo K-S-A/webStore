@@ -6,9 +6,9 @@ class UsersController < ApplicationController
     render 'show'
   end
   
-  private
+  # private
 
-  def user_params
-    params.require(:user).permit(:inn, :kpp, :ogrn, :name, :head, :init_date)
-  end
+  # def user_params
+  #   params.require(:user).permit(:inn, :kpp, :ogrn, :name, :head, :init_date)
+  # end
 end
