@@ -56,6 +56,18 @@ angular.module('mainApp', [
         url: '/registration'
         templateUrl: 'auth/registration.html'
         controller: 'AuthCtrl as vm'
+      .state 'orders',
+        url: '/orders'
+        templateUrl: 'orders/index.html'
+        controller: 'OrderCtrl as vm'
+        resolve: getOrders: ['Order', (Order) ->
+          Order.getAll()]
+      .state 'order',
+        url: '/orders/{id:[0-9]+}'
+        templateUrl: 'orders/show.html'
+        controller: 'OrdersCtrl as vm'
+        resolve: getProduct: ['Order', '$stateParams', (Order, $stateParams) ->
+          Order.find($stateParams.id)]
 
 
     $urlRouterProvider.otherwise '/'
@@ -84,7 +96,7 @@ angular.module('mainApp', [
     $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) ->
       if toState.redirectTo
         event.preventDefault()
-        if toState.redirectTo is 'cart.details' && !Order.current.items.length
+        if toState.redirectTo is 'cart.details' && !Order.current.orderItems.length
           $state.go('cart.search')
         else
           $state.go(toState.redirectTo, toParams)

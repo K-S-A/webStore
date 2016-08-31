@@ -47,10 +47,10 @@
             th.text-center Цена
             th.text-center Сумма
         tbody
-          tr data={ ng_repeat: "item in vm.order.items" }
+          tr data={ ng_repeat: "item in vm.order.orderItems" }
             th.text-center data={ ng_bind: "::($index + 1)" }
             td data={ ng_bind: "::item.product.name" }
-            td.text-right data={ ng_bind: "::item.count" }
+            td.text-right data={ ng_bind: "::item.quantity" }
             td.text-left data={ ng_bind: "::item.product.scu" }
             td.text-right data={ ng_bind: "::item.product.price" }
             td.text-right data={ ng_bind: "::vm.getTotal(item) | currency : '' : 2" }
@@ -64,7 +64,7 @@
         p.text-right: strong data={ ng_bind: "::vm.total | currency : '' : 2" }
 
       .receipt-result
-        p Всего наименований {{::vm.order.items.length}}, на сумму {{::vm.total | currency : '' : 2}} руб.
+        p Всего наименований {{::vm.order.orderItems.length}}, на сумму {{::vm.total | currency : '' : 2}} руб.
         p: strong data={ ng_bind: "::vm.total | num2word" }
       .receipt-footer
         img src="/images/receipt-footer.png"

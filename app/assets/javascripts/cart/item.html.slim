@@ -21,9 +21,9 @@ thead
       | Сумма
     th
 tbody
-  tr data={ ng_hide: 'vm.order.items.length' }
+  tr data={ ng_hide: 'vm.order.orderItems.length' }
     td.text-center colspan="8" В заказе отсутствуют товары. Добавьте с помощью формы поиска.
-  tr data={ ng_repeat: "item in vm.order.items | orderBy : vm.property : vm.reversed" }
+  tr data={ ng_repeat: "item in vm.order.orderItems | orderBy : vm.property : vm.reversed" }
     th data={ ng_bind: "($index + 1)" }
     td data={ ng_bind: "::item.product.code" }
     td data={ ng_bind: "::item.product.name" }
@@ -31,7 +31,7 @@ tbody
       input { type="number"
               min="1"
               max="999"
-              data={ ng_model: "item.count",
+              data={ ng_model: "item.quantity",
                      ng_change: "vm.updateOrder()"} }
     td data={ ng_bind: "::item.product.scu" }
     td data={ ng_bind: "::item.product.price" }

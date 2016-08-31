@@ -9,7 +9,7 @@ angular.module('mainApp').factory 'Product', [
       url: 'products/{{id}}'
       name: 'product'
       serializer: railsSerializer ->
-        @only 'id', 'name', 'img_link')
+        @only 'id', 'name', 'imgLink', 'code', 'scu', 'price')
     Product.selected = localStorageService.get('selected') || ''
     Product.all = localStorageService.get('products.selected') || []
     Product.searchText = localStorageService.get('searchText') || ''
