@@ -3,6 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.references :user, index: true, foreign_key: true
       t.string :stock_number
+      t.text :comment
 
       t.timestamps null: false
     end
