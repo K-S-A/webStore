@@ -23,7 +23,17 @@ angular.module('mainApp').controller 'AuthCtrl', [
     #     auths.showAlert('Wrong user credentials. Check e-mail/password and try again.')
     #   return
 
-    # vm.register = ->
+    vm.register = ->
+      u = angular.copy(vm.user)
+
+      u.company_name = u.companyName
+      u.init_date = u.initDate
+
+      delete u.companyName
+      delete u.initDate
+
+      Auth.register(u).then (user) ->
+        console.log(user)
 
     # vm.logout = ->
     #   Auth.logout().then ->

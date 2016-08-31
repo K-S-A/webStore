@@ -13,8 +13,8 @@ angular.module('mainApp').controller 'SearchCtrl', [
     vm.findByCategory = ->
       Product.findByCategory(vm.searchText, vm.searchBy, vm.category)
 
-    vm.addToOrder = (product, count) ->
-      Order.addItem(product, count)
+    vm.addToOrder = (product, quantity) ->
+      Order.addItem(product, quantity)
 
     vm
 ]

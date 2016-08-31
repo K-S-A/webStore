@@ -12,5 +12,8 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
     vm.getTotal = (item) ->
       Order.getItemTotal(item)
 
+    vm.createOrder = ->
+      Order.create(vm.order)
+
     vm
 ]

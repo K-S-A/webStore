@@ -8,13 +8,13 @@
     h2 Заказы
     / button data={ ng_click: "vm.create()" } Create
     uib-accordion
-      div uib-accordion-group="" data={ ng_repeat: "order in vm.orders" }
+      .table-responsive uib-accordion-group="" data={ ng_repeat: "order in vm.orders" }
         uib-accordion-heading
           span data={ ng_bind: "::order.stockNumber" }
           // TODO: move to CSS
           span.pull-right data={ ng_bind: "::order.createdAt | myDate : 'dd-MM-yyyy'" }
           span.pull-right style="padding: 0 50px;" data={ ng_bind: "vm.getOrderTotal(order) | currency : '' : 2" } 
-        table.table.table-condensed.table-hover.table-responsive
+        table.table.table-condensed.table-hover
           thead
             tr.text-center
               th №

@@ -15,6 +15,13 @@ angular.module('mainApp').factory 'Order', [
         @nestedAttribute 'orderItems'
     )
 
+    Order.beforeRequest (data) ->
+      data?.order_items_attributes.forEach (item) ->
+        item.product_id = item.product.id
+        item.price = item.product.price
+        delete item.product
+      data
+
     Order.current = localStorageService.get('order') || {items: []}
     Order.current.created_at ||= new Date()
     Order.current.stock_number ||= 'ЭМ010012713'
@@ -25,44 +32,43 @@ angular.module('mainApp').factory 'Order', [
 
     Order.find = (id) ->
       Order.get(id).then (data) ->
-        console.log(data)
         Order.current = data
 
     Order.create = (params) ->
-      console.log(params)
-      new Order(params).create().then (data) ->
-        Order.all.unshift(data)
+      new Order(params).create()
 
-    Order.addItem = (product, count) ->
+    Order.addItem = (product, quantity) ->
       Order.current.orderItems ||= []
       ids = Order.current.orderItems.map (item) ->
         item.product.id
       index = ids.indexOf(product.id)
 
       if index == -1
-        Order.current.orderItems.push(product: product, count: count)
+        Order.current.orderItems.push(product: product, quantity: quantity)
       else
         Order.current.orderItems[index].quantity += 1
 
       Order.to_lstorage('order', Order.current)
 
     Order.removeItem = (item) ->
+      index = -1
       Order.current.orderItems.forEach (el, i) ->
-        if el.product.id is item.product.id
-          Order.current.orderItems.splice(i, 1)
-          Order.to_lstorage('order', Order.current)
+        index = i if item.product.id == el.product.id
+
+      if index > -1
+        Order.current.orderItems.splice(index, 1)
+        Order.to_lstorage('order', Order.current)
 
     Order.to_lstorage = (key, value) ->
       localStorageService.set(key, value)
-    # TODO: refactor cart and order
+
     Order.total = (order) ->
       order.orderItems.reduce (a, e) ->
         a += Order.getItemTotal(e)
       , 0
 
     Order.getItemTotal = (item) ->
-      price = item.price || item.product.price
-      item.quantity * price
+      item.quantity * (item.price || item.product.price)
 
     Order.toPdf = (order) ->
       pageSize: 'A4'

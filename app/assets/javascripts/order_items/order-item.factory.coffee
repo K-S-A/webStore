@@ -9,7 +9,7 @@ angular.module('mainApp').factory 'OrderItem', [
       url: 'order_items/{{id}}'
       name: 'orderItem'
       serializer: railsSerializer ->
-        @only 'id', 'price', 'productId', 'quantity'
+        @only 'id', 'price', 'product', 'productId', 'quantity'
         @resource 'product', 'Product'
     )
 

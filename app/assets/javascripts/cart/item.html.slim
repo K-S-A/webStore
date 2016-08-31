@@ -7,8 +7,8 @@ thead
     th.hover data={ ng_click: "vm.sortBy('product.name')" }
       span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.name', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.name', true)}" }
       | Номенклатура
-    th.hover data={ ng_click: "vm.sortBy('count')" }
-      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('count', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('count', true)}" }
+    th.hover data={ ng_click: "vm.sortBy('quantity')" }
+      span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('quantity', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('quantity', true)}" }
       | Количество
     th.hover data={ ng_click: "vm.sortBy('product.scu')" }
       span data={ ng_class: "{'glyphicon glyphicon-sort-by-attributes': vm.isOrdered('product.scu', false), 'glyphicon glyphicon-sort-by-attributes-alt': vm.isOrdered('product.scu', true)}" }
