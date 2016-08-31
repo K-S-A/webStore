@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable, :recoverable , :validatable
   devise :database_authenticatable, :registerable, :rememberable, :trackable
 
+  has_many :orders
 
   def fill_requisites(inn)    
     return unless valid_inn?(inn)

@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   MAX_SEARCH_COUNT = 8
 
+  has_many :order_items
+
   scope :exact_search, -> (name, type) { type == 'name' ? where('name ILIKE ?', "%#{name}%") : where("#{type}" => name) }
   scope :approx_search, -> (names) { where('name ILIKE ANY ( array[?] )', names) }
   scope :by_category, -> (category) { where(category: category) if category }
