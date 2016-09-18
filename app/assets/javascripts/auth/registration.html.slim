@@ -32,6 +32,26 @@ form#register.form-horizontal name="register" data={ ng_submit: 'vm.register()' 
     .col-sm-7.input-group
       input#init_date.form-control type="text" data={ ng_model: 'vm.user.initDate' }
   .form-group
+    label.col-sm-3.control-label for="region" Регион
+    .col-sm-7.input-group
+      input#region.form-control type="text" data={ ng_model: 'vm.user.region' }
+  .form-group
+    label.col-sm-3.control-label for="city" Город
+    .col-sm-7.input-group
+      input#city.form-control type="text" data={ ng_model: 'vm.user.city' }
+  .form-group
+    label.col-sm-3.control-label for="address" Адресс
+    .col-sm-7.input-group
+      input#address.form-control type="text" data={ ng_model: 'vm.user.address' }
+  .form-group
+    label.col-sm-3.control-label for="zipcode" Почтовый индекс
+    .col-sm-7.input-group
+      input#zipcode.form-control type="text" data={ ng_model: 'vm.user.zipcode' }
+  .form-group
+    label.col-sm-3.control-label for="phone" Телефон
+    .col-sm-7.input-group
+      input#phone.form-control type="text" data={ ng_model: 'vm.user.phone' }
+  .form-group
     label.col-sm-3.control-label for="password" placeholder="Введите пароль..." Пароль
     .col-sm-7.input-group
       input#password.form-control type="password" data={ ng_model: 'vm.user.password' }

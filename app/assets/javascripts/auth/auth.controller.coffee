@@ -6,11 +6,11 @@ angular.module('mainApp').controller 'AuthCtrl', [
   'User'
   ($state, Auth, User) ->
     vm = this
+    vm.user = User.currentUser
 
-    Auth.currentUser().then (user) ->
-      vm.user = user      
-    , (error) ->
-      vm.user = {}
+    Auth.currentUser()
+    # .then (user) ->
+    #   angular.extend(User.currentUser, user)
 
     # vm.login = ->
     #   Auth.login(vm.user)#.then (user) ->
@@ -33,7 +33,8 @@ angular.module('mainApp').controller 'AuthCtrl', [
       delete u.initDate
 
       Auth.register(u).then (user) ->
-        console.log(user)
+        # angular.extend(User.currentUser, user)
+        $state.go('home')
 
     # vm.logout = ->
     #   Auth.logout().then ->

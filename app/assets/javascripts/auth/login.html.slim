@@ -1,0 +1,11 @@
+form.form-horizontal name="find-by-inn" data={ my_login_user: 'vm.user' }
+  .form-group
+    label.col-sm-3.control-label for="inn" placeholder="Введите ИНН..." ИНН
+    .col-sm-7.input-group
+      input#inn.form-control type="text" data={ ng_model: 'vm.user.inn' }
+  .form-group
+    label.col-sm-3.control-label for="password" placeholder="Введите пароль..." Пароль
+    .col-sm-7.input-group
+      input#password.form-control type="password" data={ ng_model: 'vm.user.password' }
+  .form-group
+    button.btn.btn-lg.btn-primary.col-sm-offset-2.col-sm-8 type="submit" Вход

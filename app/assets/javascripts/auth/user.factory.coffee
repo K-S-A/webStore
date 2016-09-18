@@ -11,6 +11,8 @@ angular.module('mainApp').factory 'User', [
       serializer: railsSerializer ->
         @only 'id', 'inn', 'kpp', 'ogrn', 'companyName', 'head', 'initDate')
 
+    User.currentUser = {}
+
     User.fetchByInn = (inn) ->
       User.$post('users/fetch_by_inn', inn: inn)
 

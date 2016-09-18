@@ -36,7 +36,24 @@
       .col-xs-2
         p Покупатель:
       .col-xs-10
-        p: strong ___________________________________________________________________________
+        p: strong
+          span data={ ng_bind: '::vm.user.company_name' }
+          span ,&nbsp;ИНН&nbsp;
+          span data={ ng_bind: '::vm.user.inn' }
+          span ,&nbsp;КПП&nbsp;
+          span data={ ng_bind: '::vm.user.kpp' }
+          span ,&nbsp;
+          span data={ ng_bind: '::vm.user.zipcode' }
+          span ,&nbsp;
+          span data={ ng_bind: '::vm.user.region' }
+          span ,&nbsp;
+          span data={ ng_bind: '::vm.user.city' }
+          span ,&nbsp;
+          span data={ ng_bind: '::vm.user.address' }
+          span ,&nbsp;тел.:&nbsp;
+          span data={ ng_bind: '::vm.user.phone' }
+
+
       table.table.table-bordered.order-items-list
         thead
           tr

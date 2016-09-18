@@ -56,6 +56,10 @@ angular.module('mainApp', [
         url: '/registration'
         templateUrl: 'auth/registration.html'
         controller: 'AuthCtrl as vm'
+      .state 'login',
+        url: '/login'
+        templateUrl: 'auth/login.html'
+        controller: 'AuthCtrl as vm'
       .state 'orders',
         url: '/orders'
         templateUrl: 'orders/index.html'
@@ -90,8 +94,9 @@ angular.module('mainApp', [
   '$rootScope'
   '$state'
   'Order'
-  ($rootScope, $state, Order) ->
-    $rootScope.$on("$stateChangeError", console.log.bind(console))
+  'User'
+  ($rootScope, $state, Order, User) ->
+    $rootScope.$on('$stateChangeError', console.log.bind(console))
 
     $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams, options) ->
       if toState.redirectTo
@@ -100,4 +105,8 @@ angular.module('mainApp', [
           $state.go('cart.search')
         else
           $state.go(toState.redirectTo, toParams)
+
+    $rootScope.$on 'devise:login', (event, currentUser)->
+      angular.extend(User.currentUser, currentUser)
+
 ])

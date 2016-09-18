@@ -1,11 +1,14 @@
 'use strict'
 
 angular.module('mainApp').controller 'CheckoutCtrl', [
-  'Product',
+  'Product'
   'Order'
-  (Product, Order) ->
+  'User'
+  'Auth'
+  (Product, Order, User, Auth) ->
     vm = this
     vm.order = Order.current
+    vm.user = User.currentUser
     vm.total = Order.total(vm.order)
     vm.receiptTitle = Order.buildTitle(vm.order)
 
@@ -14,6 +17,9 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
 
     vm.createOrder = ->
       Order.create(vm.order)
+
+    vm.companyRequisites = ->
+      vm.user.company_name
 
     vm
 ]
