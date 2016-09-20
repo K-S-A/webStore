@@ -7,8 +7,9 @@
     form#detailed-search.form-inline data={ ng_include: "'cart/_search_form.html'",
                             ng_submit: "vm.findByCategory()" }
 
-    .product-inline.media data={ ng_repeat: "product in vm.products",
-                  ng_include: "'cart/products.html'" }
+    div data={ infinite_scroll: "vm.searchMore()", infinite_scroll_disabled: "vm.pagination.lastPage", infinite_scroll_distance: '1' }
+      .product-inline.media data={ ng_repeat: "product in vm.products",
+                    ng_include: "'cart/products.html'" }
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

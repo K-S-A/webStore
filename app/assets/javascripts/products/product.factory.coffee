@@ -17,6 +17,9 @@ angular.module('mainApp').factory 'Product', [
     Product.category = localStorageService.get('category') || 'all'
     Product.found = []
     Product.current = {}
+    Product.pagination =
+      page: 1
+      lastPage: false
 
     Product.search = (name) ->
       Product.$get('products/search', value: name)
@@ -32,14 +35,22 @@ angular.module('mainApp').factory 'Product', [
       Product.get(id: id).then (data) ->
         Product.current = data
 
-    Product.findByCategory = (value, type, category) ->
+    Product.findByCategory = (value, type, category, replace) ->
       params =
         value: value
         type: type
+        page: Product.pagination.page
       params.category = category if category != 'all'
 
       Product.query(params).then (data) ->
-        angular.copy(data, Product.found)
+        Product.pagination.lastPage = true if data.length < 20
+
+        if replace
+          angular.copy(data, Product.found)
+        else
+          data.forEach (product) ->
+            Product.found.push(product)
+
         Product.to_lstorage('searchText', value)
         Product.to_lstorage('searchBy', type)
         Product.to_lstorage('category', category)

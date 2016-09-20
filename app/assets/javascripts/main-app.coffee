@@ -13,7 +13,9 @@ angular.module('mainApp', [
   'ngSanitize'
   'pascalprecht.translate'
   'LocalStorageModule'
-]).config([
+])
+.value('THROTTLE_MILLISECONDS', 1000)
+.config([
   '$stateProvider'
   '$urlRouterProvider'
   '$translateProvider'
@@ -106,7 +108,23 @@ angular.module('mainApp', [
         else
           $state.go(toState.redirectTo, toParams)
 
-    $rootScope.$on 'devise:login', (event, currentUser)->
-      angular.extend(User.currentUser, currentUser)
+    $rootScope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams, options) ->
+      $rootScope.previousState = fromState.name
+      # console.log('$stateChangeSuccess: ' + $rootScope.previousState)
+
+    $rootScope.$on 'devise:login', (event, currentUser) ->
+      # console.log('devise:login', $state.current.name)
+      User.setUser(currentUser)
+      currentState = $state.current.name
+      redirectTo = null
+
+      if ['login', 'registration'].indexOf(currentState) >= 0
+        redirectTo = ($rootScope.previousState || 'home')
+
+      $state.go(redirectTo) if redirectTo
+
+    $rootScope.$on 'devise:logout', (event, currentUser) ->
+      console.log('devise:logout')
+      $state.go('home')
 
 ])
