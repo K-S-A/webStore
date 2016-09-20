@@ -19,6 +19,9 @@ gem 'redis-rails', '~> 4.0'
 gem 'redis-rack-cache', '~> 1.2'
 gem 'savon', '~> 2.11'
 gem 'figaro', '~> 1.1.1'
+gem 'roo', '~> 2.4.0'
+gem 'roo-xls'
+gem 'kaminari', '~> 0.17.0'
 
 group :development, :test do
   gem 'byebug'
