@@ -10,10 +10,16 @@ nav.navbar.navbar-default role="message"
       span.icon-bar
     a.navbar-brand data={ ui_sref: "home" } ЭЛЕКТРОМАРКЕТ
   .collapse.navbar-collapse data={ ng_class: "{ in: collapsed }" }
-    / ul.nav.navbar-nav
-    /   li
-    /     a data={ ui_sref: "tournaments" }
-    /       | Home
+    ul.nav.navbar-nav
+      li
+        a data={ ng_if: "vm.order.orderItems.length", ui_sref: "cart.details" }
+          | Заказ:&nbsp;
+          span data={ ng_bind: "vm.order.orderItems.length + ' позици' + (vm.order.orderItems.length == 1 ? 'я' : vm.order.orderItems.length < 5 ? 'и' : 'й') + ' ('" }
+          / span &nbsp;позиций (
+          span data={ ng_bind: "vm.order.total | currency : '' : 2" }
+          span руб.)
+        a data={ ng_if: "!vm.order.orderItems.length", ui_sref: "cart.details" }
+          | Создать заказ
     form.navbar-form.navbar-right role="login" data={ ng_hide: "vm.user.id",
                                                       my_login_user: "vm.user" }
       .form-group.input-group-sm

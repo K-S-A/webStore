@@ -74,6 +74,12 @@ angular.module('mainApp', [
         controller: 'OrdersCtrl as vm'
         resolve: getProduct: ['Order', '$stateParams', (Order, $stateParams) ->
           Order.find($stateParams.id)]
+      .state 'categories',
+        url: '/categories'
+        templateUrl: 'categories/index.html'
+        controller: 'CategoriesCtrl as vm'
+        resolve: getCategories: ['Category', (Category) ->
+          Category.getAll()]
 
 
     $urlRouterProvider.otherwise '/'
@@ -110,6 +116,7 @@ angular.module('mainApp', [
 
     $rootScope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams, options) ->
       $rootScope.previousState = fromState.name
+      Order.current.total = Order.total(Order.current)
       # console.log('$stateChangeSuccess: ' + $rootScope.previousState)
 
     $rootScope.$on 'devise:login', (event, currentUser) ->

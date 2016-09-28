@@ -4,9 +4,11 @@ angular.module('mainApp').controller 'AuthCtrl', [
   '$state'
   'Auth'
   'User'
-  ($state, Auth, User) ->
+  'Order'
+  ($state, Auth, User, Order) ->
     vm = this
     vm.user = User.currentUser
+    vm.order = Order.current
 
     Auth.currentUser().then (user) ->
       User.setUser(user)
