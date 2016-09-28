@@ -27,7 +27,7 @@ angular.module('mainApp', [
         templateUrl: 'products/home.html'
         controller: 'ProductsCtrl as vm'
       .state 'product',
-        url: '/products/{id:[0-9]+}'
+        url: '/products/:id'
         templateUrl: 'products/show.html'
         controller: 'ProductsCtrl as vm'
         resolve: getProduct: ['Product', '$stateParams', (Product, $stateParams) ->
