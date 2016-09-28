@@ -3,5 +3,7 @@ class Category < ActiveRecord::Base
   has_many :subcategories, class_name: 'Category', foreign_key: :parent_id, dependent: :destroy
   has_many :products
 
+  default_scope { order(:name) }
+
   scope :root_categories, -> { where(parent_id: nil) }
 end
