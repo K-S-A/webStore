@@ -21,7 +21,6 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
       Category.getProducts(false)
 
     vm.toggleSubcategories = (category, collection) ->
-      console.log('called')
       category.showSub = !category.showSub
 
       collection.forEach (c) ->
@@ -33,7 +32,6 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
           cat.subcategories.forEach (c) ->
             c.showSub = false
       else
-        console.log('called')
         vm.resetProducts(category)
 
     vm.addToOrder = (product, quantity) ->

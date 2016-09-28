@@ -131,7 +131,7 @@ angular.module('mainApp', [
       $state.go(redirectTo) if redirectTo
 
     $rootScope.$on 'devise:logout', (event, currentUser) ->
-      console.log('devise:logout')
+      # console.log('devise:logout')
       $state.go('home')
 
 ])
