@@ -63,6 +63,7 @@ angular.module('mainApp').factory 'Order', [
       localStorageService.set(key, value)
 
     Order.total = (order) ->
+      return 0 if !order.orderItems
       order.orderItems.reduce (a, e) ->
         a += Order.getItemTotal(e)
       , 0
