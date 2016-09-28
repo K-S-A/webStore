@@ -1,0 +1,21 @@
+.container-fluid
+  #right
+    h2 Категории
+    ul
+      li data={ ng_repeat: "root in vm.categories" }
+        span.hover data={ ng_click: "vm.toggleSubcategories(root, vm.categories)", ng_bind: "::root.name" }
+        ul data={ ng_show: "root.showSub" }
+          li data={ ng_repeat: "category in root.subcategories" }
+            span.hover data={ ng_click: "vm.toggleSubcategories(category, root.subcategories)", ng_bind: "::category.name" }
+            ul data={ ng_if: "category.subcategories.length", ng_show: "category.showSub" }
+              li data={ ng_repeat: "subcategory in category.subcategories" }
+                span.hover data={ ng_click: "vm.toggleSubcategories(subcategory, category.subcategories)", ng_bind: "::subcategory.name" }
+                ul data={ ng_if: "subcategory.subcategories.length", ng_show: "subcategory.showSub" }
+                  li data={ ng_repeat: "lessercategory in subcategory.subcategories" }
+                    span.hover data={ ng_bind: "::lessercategory.name" }
+  .col-xs-8.col-xs-offset-4
+    div style="margin-top: 30px;"
+      .text-center data={ ng_hide: 'vm.products.length' } Нет результатов для отображения
+      div data={ ng_if: 'vm.products.length', infinite_scroll: "vm.addMore()", infinite_scroll_disabled: "vm.pagination.lastPage", infinite_scroll_distance: '1', ng_show: 'vm.products.length' }
+        .product-inline.media data={ ng_repeat: "product in vm.products",
+                                     ng_include: "'cart/products.html'" }
