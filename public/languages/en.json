@@ -6,7 +6,9 @@
   "PRICE_LIST": "Prices",
   "SEARCH_PLACEHOLDER": "Search by product name...",
   "SEARCH_BUTTON": "Search this site",
-  "main.title": "WEBSHOP",
+  "OFFICE": "Office",
+  "STORAGE": "Storage",
+  "main.title": "PROMTECHRESOURCE",
   "main.subtitle": "Sub title",
   "main.description": "Description"
 }
