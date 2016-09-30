@@ -9,6 +9,7 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
     vm.category = Category.current
     vm.products = Category.products
     vm.pagination = Category.pagination
+    vm.breadcrumbs = ['Категории']
 
     vm.resetProducts = (category) ->
       vm.pagination.page = 1
@@ -20,7 +21,7 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
       vm.pagination.page += 1
       Category.getProducts(false)
 
-    vm.toggleSubcategories = (category, collection) ->
+    vm.toggleSubcategories = (category, collection, breadcrumb) ->
       category.showSub = !category.showSub
 
       collection.forEach (c) ->
@@ -33,6 +34,11 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
             c.showSub = false
       else
         vm.resetProducts(category)
+        vm.setBreadcrumbs(breadcrumb)
+
+    vm.setBreadcrumbs = (breadcrumb) ->
+      vm.breadcrumbs.length = 0
+      angular.extend(vm.breadcrumbs, breadcrumb)      
 
     vm.addToOrder = (product, quantity) ->
       Order.addItem(product, quantity)
