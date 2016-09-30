@@ -38,6 +38,7 @@ angular.module('mainApp', [
       .state 'contacts',
         url: '/contacts'
         templateUrl: 'static/contacts.html'
+        controller: 'ContactsCtrl as vm'
       .state 'cart',
         url: '/cart'
         template: '<ui-view></ui-view>'
