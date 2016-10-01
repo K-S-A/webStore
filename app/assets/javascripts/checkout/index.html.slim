@@ -1,63 +1,56 @@
 .container-fluid
   .col-xs-10
     .receipt-container
-      p.checkout-note.text-center
-        span Внимание! Оплата данного счета означает согласие с условиями поставки товара. Уведомление об оплате
-        span обязательно, в противном случае не гарантируется наличие товара на складе. Товар отпускается по факту
-        span прихода денег на р/с Поставщика, самовывозом, при наличии доверенности и паспорта.
+      p.checkout-note
+        strong Общество с ограниченной ответственностью "Промтехресурс"
+        br
+        br
+        strong Адрес: 127055, г. Москва, Вадковский пер., д.12 оф.33, тел.: (495) 505-78-25
+        br
+        br
+        br
+      p.small.text-center: strong Образец заполнения платежного поручения
       table.table.table-bordered
         tbody
           tr
-            td colspan="4" rowspan="2" АО "РАЙФФАЙЗЕНБАНК" Г. МОСКВА
-          tr
-            td БИК
-            td 44525700
-          tr
-            td.desc colspan="4" Банк получателя
-            td Сч. №
-            td 30101810200000000700
-          tr
             td ИНН
-            td 7728322944
+            td 7707355811
             td КПП
-            td 772801001
-            td rowspan="3" Сч. №
-            td rowspan="3" 40702810700000013833
+            td 770701001
+            td style="vertical-align: bottom;" rowspan="2" Сч. №
+            td style="vertical-align: bottom;" rowspan="2" 40702810238000086709
           tr
-            td colspan="4" Общество с ограниченной ответственностью "Электромаркет"
+            td colspan="4"
+              span Получатель
+              br
+              span Общество с ограниченной ответственностью "Промтехресурс"
           tr
-            td.desc colspan="4" Получатель
+            td colspan="4" rowspan="3"
+              span Банк получателя
+              br
+              span ПАО СБЕРБАНК Г. МОСКВА
+            td БИК
+            td 044525225
+          tr
+            td Сч. №
+            td 30101810400000000225
+
       p.checkout-title data={ ng_bind: '::vm.receiptTitle' }
 
       .col-xs-2
-        p Поставщик:
+        p Плательщик:
       .col-xs-10
-        p: strong Общество с ограниченной ответственностью "Электромаркет", ИНН 7728322944, КПП 772801001, 117279, г. Москва, ул. Миклухо-Маклая, д.34, оф.26, тел.: (495) 585-51-82
+        p: strong data={ ng_bind: "::vm.receiver" }
       .col-xs-2
-        p Покупатель:
+        p Грузополучатель:
       .col-xs-10
-        p: strong
-          span data={ ng_bind: '::vm.user.company_name' }
-          span ,&nbsp;ИНН&nbsp;
-          span data={ ng_bind: '::vm.user.inn' }
-          span ,&nbsp;КПП&nbsp;
-          span data={ ng_bind: '::vm.user.kpp' }
-          span ,&nbsp;
-          span data={ ng_bind: '::vm.user.zipcode' }
-          span ,&nbsp;
-          span data={ ng_bind: '::vm.user.region' }
-          span ,&nbsp;
-          span data={ ng_bind: '::vm.user.city' }
-          span ,&nbsp;
-          span data={ ng_bind: '::vm.user.address' }
-          span ,&nbsp;тел.:&nbsp;
-          span data={ ng_bind: '::vm.user.phone' }
-
+        p: strong data={ ng_bind: "::vm.receiver" }
 
       table.table.table-bordered.order-items-list
         thead
           tr
             th.text-center №
+            th.text-center Артикул
             th.text-center Товары (работы, услуги)
             th.text-center Кол-во
             th.text-center Ед.
@@ -66,6 +59,7 @@
         tbody
           tr data={ ng_repeat: "item in vm.order.orderItems" }
             th.text-center data={ ng_bind: "::($index + 1)" }
+            td width="110" data={ ng_bind: "::item.product.code" }
             td data={ ng_bind: "::item.product.name" }
             td.text-right data={ ng_bind: "::item.quantity" }
             td.text-left data={ ng_bind: "::item.product.scu" }

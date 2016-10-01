@@ -11,6 +11,7 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
     vm.user = User.currentUser
     vm.total = Order.total(vm.order)
     vm.receiptTitle = Order.buildTitle(vm.order)
+    vm.receiver = Order.buildReceiver(vm.order)
 
     vm.getTotal = (item) ->
       Order.getItemTotal(item)
