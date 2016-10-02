@@ -46,7 +46,7 @@ angular.module('mainApp').factory 'Order', [
       if index == -1
         Order.current.orderItems.push(product: product, quantity: quantity)
       else
-        Order.current.orderItems[index].quantity += 1
+        Order.current.orderItems[index].quantity = quantity
 
       Order.to_lstorage('order', Order.current)
 

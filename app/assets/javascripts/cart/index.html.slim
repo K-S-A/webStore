@@ -28,7 +28,7 @@
             .col-sm-6
               p.form-control-static data={ ng_bind: "(vm.total * 18 / 118.0) | currency : '' : 2" }
 
-        button.btn.btn-primary.btn-xs.btn-block data={ ui_sref: 'checkout' } Сформировать счет
+        button.btn.btn-primary.btn-xs.btn-block data={ ng_if: 'vm.order.orderItems && vm.order.orderItems.length', ui_sref: 'checkout' } Сформировать счет
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

@@ -9,9 +9,13 @@
 
     div style="margin-top: 30px;"
       .text-center data={ ng_hide: 'vm.products.length' } Нет результатов для отображения
-      div data={ ng_if: 'vm.products.length', infinite_scroll: "vm.searchMore()", infinite_scroll_disabled: "vm.pagination.lastPage", infinite_scroll_distance: '1', ng_show: 'vm.products.length' }
+      div { data={ ng_if: 'vm.products.length',
+                   infinite_scroll: "vm.searchMore()",
+                   infinite_scroll_disabled: "vm.pagination.lastPage",
+                   infinite_scroll_distance: '1',
+                   ng_show: 'vm.products.length' } }
         .product-inline.media data={ ng_repeat: "product in vm.products",
-                                     ng_include: "'cart/products.html'" }
+                                     ng_include: "'products/index.html'" }
 
     ul.list-unstyled.row.main-navbar.text-center
       li.col-xs-6: p

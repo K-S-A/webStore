@@ -3,7 +3,8 @@
 angular.module('mainApp').factory 'Category', [
   'railsResourceFactory'
   'railsSerializer'
-  (railsResourceFactory, railsSerializer) ->
+  'Order'
+  (railsResourceFactory, railsSerializer, Order) ->
     Category = railsResourceFactory(
       url: 'categories'
       name: 'category'
@@ -32,11 +33,16 @@ angular.module('mainApp').factory 'Category', [
       Category.get(Category.current.id, params).then (data) ->
         Category.pagination.lastPage = true if data.length < 20
 
-        if replace
-          angular.copy(data, Category.products)
-        else
-          data.forEach (product) ->
-            Category.products.push(product)
+        Category.products.length = 0 if replace
+        Category.fetchProducts(data, Category.products)
+
+    Category.fetchProducts = (products, target) ->
+      products.forEach (product) ->
+        product.count = 1
+        Order.current.orderItems.forEach (i) ->
+          if i.product.id == product.id
+            product.count = i.quantity
+        target.push(product)
 
     Category
 ]

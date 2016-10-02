@@ -4,7 +4,8 @@ angular.module('mainApp').factory 'Product', [
   'railsResourceFactory'
   'railsSerializer'
   'localStorageService'
-  (railsResourceFactory, railsSerializer, localStorageService) ->
+  'Order'
+  (railsResourceFactory, railsSerializer, localStorageService, Order) ->
     Product = railsResourceFactory(
       url: 'products/{{id}}'
       name: 'product'
@@ -25,9 +26,11 @@ angular.module('mainApp').factory 'Product', [
       Product.$get('products/search', value: name)
 
     Product.fullSearch = ->
+      # TODO: fix/refactor
+      Product.all.length = 0 if Product.all.length
       if Product.selected.length
         Product.query(value: Product.selected).then (data) ->
-          angular.copy(data, Product.all)
+          Product.fetchProducts = (data, Product.all)
       else
         angular.copy([], Product.all)
 
@@ -45,11 +48,8 @@ angular.module('mainApp').factory 'Product', [
       Product.query(params).then (data) ->
         Product.pagination.lastPage = true if data.length < 20
 
-        if replace
-          angular.copy(data, Product.found)
-        else
-          data.forEach (product) ->
-            Product.found.push(product)
+        Product.found.length = 0 if replace
+        Product.fetchProducts(data, Product.found)
 
         Product.to_lstorage('searchText', value)
         Product.to_lstorage('searchBy', type)
@@ -58,6 +58,14 @@ angular.module('mainApp').factory 'Product', [
     Product.to_lstorage = (key, value) ->
       Product[key] = value
       localStorageService.set(key, value)
+
+    Product.fetchProducts = (products, target) ->
+      products.forEach (product) ->
+        product.count = 1
+        Order.current.orderItems.forEach (i) ->
+          if i.product.id == product.id
+            product.count = i.quantity
+        target.push(product)
 
     Product
 ]

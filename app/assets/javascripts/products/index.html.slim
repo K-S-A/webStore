@@ -4,19 +4,23 @@ a.pull-left data={ ui_sref: "product({id: product.id})" }
                      data={ ng_src: "{{ product.imgLink }}",
                             uib_tooltip: "{{::product.code}}" } }
 .media-body
-  a style='display: inline-block; width: 60%;' data={ ng_bind: "::product.name",
-           ui_sref: "product({id: product.id})" }
+  a { style='display: inline-block; width: 60%;'
+      data={ ng_bind: "::product.name",
+             ui_sref: "product({id: product.id})" } }
   span.pull-right.text-success.hover.glyphicon.glyphicon-shopping-cart { style="padding-left: 10px;"
                                                                          data={ my_add_product: '',
                                                                                 uib_tooltip: "Купить" } }
   input.pull-right { type="number"
                      min="0"
+                     max="{{ product.inStock }}"
                      step="1"
                      data={ ng_if: "product.inStock",
-                            ng_value: "product.count || 1",
                             ng_model: "product.count",
                             uib_tooltip: "Количество" } }
-  input.pull-right type="number" min="0" step="1" disabled="" data={ ng_if: "!product.inStock", ng_value: "product.count || 0", ng_model: "product.count" }
+  input.pull-right { type="number"
+                     disabled=""
+                     data={ ng_if: "!product.inStock",
+                            ng_value: "0" } }
   strong
     span.pull-right { style="padding: 0 15px; display: inline-block; min-width: 50px;"
                       data={ ng_bind: "::product.price | currency : '' : 2",

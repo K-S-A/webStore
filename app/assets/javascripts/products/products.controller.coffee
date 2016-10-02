@@ -1,9 +1,10 @@
 'use strict'
 
 angular.module('mainApp').controller 'ProductsCtrl', [
-  'Product'
   '$state'
-  (Product, $state) ->
+  'Product'
+  'Order'
+  ($state, Product, Order) ->
     vm = this
     vm.selected = Product.selected
     vm.current = Product.current
@@ -22,6 +23,9 @@ angular.module('mainApp').controller 'ProductsCtrl', [
 
     vm.to_lstorage = ->
       Product.to_lstorage('selected', vm.selected.name || vm.selected)
+
+    vm.addToOrder = (product, quantity) ->
+      Order.addItem(product, quantity)
 
     vm
 ]
