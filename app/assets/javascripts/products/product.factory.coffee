@@ -30,7 +30,7 @@ angular.module('mainApp').factory 'Product', [
       Product.all.length = 0 if Product.all.length
       if Product.selected.length
         Product.query(value: Product.selected).then (data) ->
-          Product.fetchProducts = (data, Product.all)
+          Product.fetchProducts(data, Product.all)
       else
         angular.copy([], Product.all)
 
