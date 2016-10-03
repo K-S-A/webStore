@@ -1,0 +1,97 @@
+.container-fluid
+  .col-xs-10
+    .receipt-container
+      p.checkout-note
+        strong Общество с ограниченной ответственностью "Промтехресурс"
+        br
+        br
+        strong Адрес: 127055, г. Москва, Вадковский пер., д.12 оф.33, тел.: (495) 505-78-25
+        br
+        br
+        br
+      p.small.text-center: strong Образец заполнения платежного поручения
+      table.table.table-bordered
+        tbody
+          tr
+            td ИНН
+            td 7707355811
+            td КПП
+            td 770701001
+            td style="vertical-align: bottom;" rowspan="2" Сч. №
+            td style="vertical-align: bottom;" rowspan="2" 40702810238000086709
+          tr
+            td colspan="4"
+              span Получатель
+              br
+              span Общество с ограниченной ответственностью "Промтехресурс"
+          tr
+            td colspan="4" rowspan="3"
+              span Банк получателя
+              br
+              span ПАО СБЕРБАНК Г. МОСКВА
+            td БИК
+            td 044525225
+          tr
+            td Сч. №
+            td 30101810400000000225
+
+      p.checkout-title data={ ng_bind: '::vm.receiptTitle' }
+
+      .col-xs-2
+        p Плательщик:
+      .col-xs-10
+        p: strong data={ ng_bind: "::vm.order.user.companyName || '__________________'" }
+      .col-xs-2
+        p Грузополучатель:
+      .col-xs-10
+        p: strong data={ ng_bind: "::vm.order.user.companyName || '__________________'" }
+
+      table.table.table-bordered.order-items-list
+        thead
+          tr
+            th.text-center №
+            th.text-center Артикул
+            th.text-center Товары (работы, услуги)
+            th.text-center Кол-во
+            th.text-center Ед.
+            th.text-center Цена
+            th.text-center Сумма
+        tbody
+          tr data={ ng_repeat: "item in vm.order.orderItems" }
+            th.text-center data={ ng_bind: "::($index + 1)" }
+            td width="110" data={ ng_bind: "::item.product.code" }
+            td data={ ng_bind: "::item.product.name" }
+            td.text-right data={ ng_bind: "::item.quantity" }
+            td.text-left data={ ng_bind: "::item.product.scu" }
+            td.text-right data={ ng_bind: "::item.product.price" }
+            td.text-right data={ ng_bind: "::vm.getTotal(item) | currency : '' : 2" }
+      .col-xs-7
+        label Комментарий к заказу:
+        p data={ ng_bind: "::vm.order.comment" }
+
+      .col-xs-3
+        p.text-right: strong Итого:
+        p.text-right: strong Сумма НДС:
+        p.text-right: strong Всего к оплате:
+      .col-xs-2
+        p.text-right: strong data={ ng_bind: "::vm.total | currency : '' : 2" }
+        p.text-right: strong data={ ng_bind: "::(vm.total * 18 / 118.0) | currency : '' : 2" }
+        p.text-right: strong data={ ng_bind: "::vm.total | currency : '' : 2" }
+
+      .receipt-result
+        p Всего наименований {{::vm.order.orderItems.length}}, на сумму {{::vm.total | currency : '' : 2}} руб.
+        p: strong data={ ng_bind: "::vm.total | num2word" }
+      .receipt-footer
+        img src="/images/receipt-footer.png"
+  .col-xs-2
+    .form-group
+      input#target-email.form-control { type="email"
+                                        placeholder="Введите e-mail..."
+                                        data={ ng_model: "vm.email" } }
+    button.btn.btn-block.btn-primary { data={ ng_click: 'vm.sendMail(vm.order, vm.email)',
+                                              my_send_order_by_email: "" } } Отправить на почту
+    / button.btn.btn-block.btn-primary disabled='' Загрузить в формате .xls
+    button.btn.btn-block.btn-primary data={ my_download_pdf: 'vm.order', my_disabled_on_click: "" } Загрузить в формате .pdf
+    button.btn.btn-block.btn-primary data={ my_print_pdf: 'vm.order', my_disabled_on_click: "" } Печать
+    / button.btn.btn-block.btn-danger data={ ui_sref: "cart.details" } Редактировать заказ
+    / button.btn.btn-block.btn-success data={ ng_click: "vm.createOrder()" } Создать заказ

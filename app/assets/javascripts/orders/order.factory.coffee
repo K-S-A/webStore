@@ -10,21 +10,33 @@ angular.module('mainApp').factory 'Order', [
       url: 'orders/{{id}}'
       name: 'order'
       serializer: railsSerializer ->
-        @only 'id', 'stockNumber', 'orderItems', 'comment'
+        @only 'id', 'stockNumber', 'orderItems', 'comment', 'user', 'pdf'
         @resource 'orderItems', 'OrderItem'
         @nestedAttribute 'orderItems'
     )
 
     Order.beforeRequest (data) ->
-      data?.order_items_attributes.forEach (item) ->
+      data ||= {}
+      data.order_items_attributes ||= []
+      data.order_items_attributes.forEach (item) ->
         item.product_id = item.product.id
         item.price = item.product.price
         delete item.product
       data
 
-    Order.current = localStorageService.get('order') || {items: []}
+    Order.currentShow ||= {}
+    Order.current = localStorageService.get('order') || {orderItems: []}
     Order.current.created_at ||= new Date()
     Order.current.stock_number ||= 'ЭМ010012713'
+
+    Order.reset = (data) ->
+      Order.current.stockNumber = (parseInt(data.stockNumber) + 1).toString()
+      Order.current.orderItems.length = 0
+      Order.current.total = 0
+      Order.current.comment = ''
+
+    Order.sendMail = (order, email) ->
+      Order.$post('orders/' + order.id + '/order_mailers', { pdf: Order.pdf }, {}, { email: email })
 
     Order.getAll = ->
       Order.get().then (data) ->
@@ -273,11 +285,11 @@ angular.module('mainApp').factory 'Order', [
       $filter('num2word')(Order.total(order))
 
     Order.buildTitle = (order) ->
-      'Счет № ' + order.stock_number + ' от ' + $filter('date')(order.created_at, 'd MMMM yyyy г.')
+      'Счет № ' + (order.stockNumber || '1***') + ' от ' + $filter('date')((order.createdAt || new Date()), 'd MMMM yyyy г.')
 
     Order.buildReceiver = (order) ->
-      if order.user && order.user.company_name
-        order.user.company_name
+      if order.user && order.user.companyName
+        order.user.companyName
       else
         '______________________________________________'
 

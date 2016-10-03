@@ -2,10 +2,7 @@
   .col-xs-2 data={ ng_include: "'products/_fill_imgs.html'" }
 
   .col-xs-8
-    / div data={ ng_include: "'products/_header.html'" }
-    / pre
-    /   | {{ vm.orders }}
-    h2 Заказы
+    h2 История заказов
     / button data={ ng_click: "vm.create()" } Create
     uib-accordion
       .table-responsive uib-accordion-group="" data={ ng_repeat: "order in vm.orders" }
@@ -13,7 +10,8 @@
           span data={ ng_bind: "::order.stockNumber" }
           // TODO: move to CSS
           span.pull-right data={ ng_bind: "::order.createdAt | myDate : 'dd-MM-yyyy'" }
-          span.pull-right style="padding: 0 50px;" data={ ng_bind: "vm.getOrderTotal(order) | currency : '' : 2" } 
+          span.pull-right style="padding: 0 50px; width: 150px;" data={ ng_bind: "vm.getOrderTotal(order) | currency : '' : 2" } 
+          a.pull-right data={ ng_click: "$event.stopPropagation();", ui_sref: "order({id: order.id})" } Просмотреть счет
         table.table.table-condensed.table-hover
           thead
             tr.text-center

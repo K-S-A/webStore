@@ -7,11 +7,13 @@ angular.module('mainApp').controller 'OrderCtrl', [
     vm.property = null
     vm.reversed = false
     vm.orders = Order.all
-    vm.order =
-      stockNumber: 'adfsds1'
-      orderItems: [
-        {productId: 1, quantity: 2, price: 123}
-      ]
+    vm.order = Order.currentShow
+    vm.total = Order.total(vm.order)
+    vm.email = ''
+
+    vm.sendMail = ->
+      Order.sendMail(vm.order, vm.email)
+
     vm.create = ->
       Order.create(vm.order)
 
