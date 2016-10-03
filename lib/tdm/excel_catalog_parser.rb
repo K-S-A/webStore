@@ -30,6 +30,7 @@ module TDM
           # create product if product_row?
           if product_row?(row)
             find_or_build_product(row)
+            next
           end
 
           # create category structure
@@ -196,6 +197,9 @@ end
 # # Product.where(code: ).each do |product|
 #   `wget -O public/#{product.code}.jpg --save-cookies cookies.txt --keep-session-cookies --user necm --password=gfhjkmytrv1 http://catalog.necm.ru/get.php?name=//FTP/%D1%84%D0%BE%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0/%D0%9F%D0%9E%20%D0%90%D0%A0%D0%A2%D0%98%D0%9A%D0%A3%D0%9B%D0%90%D0%9C/#{product.code[0..3]}/TDM-#{product.code}.jpg`
 # end
+
+# # Call parsing
+# TDM::ExcelCatalogParser.new('http://www.necm.ru/download/zayavka77.xls').call
 
 # # Remove unnecessary categories
 # Category.where(name: ['Рекламные материалы', 'Товары других отечественных производителей']).destroy_all
