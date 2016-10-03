@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
@@ -39,4 +39,28 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  # ActionMailer::Base.smtp_settings = {
+  #  :address => "smtp.yandex.ru",
+  #  :port => 465,
+  #  :domain => "yandex.ru",
+  #  :authentication => :login,
+  #  :user_name => "name",
+  #  :password => "password",
+  #  :ssl=> true,
+  #  :enable_starttls_auto=> true,
+  #  :tls=> true
+  # }
+  config.action_mailer.default :charset => 'utf-8'
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => 'smtp.gmail.com',
+   :port                 => 587,
+   :domain               => 'promtehresourse.ru',
+   :user_name            => ENV['GMAIL_LOGIN'],
+   :password             => ENV['GMAIL_PASSWORD'],
+   :authentication       => 'plain',
+  :enable_starttls_auto  => true
+  }
 end

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     post 'fetch_by_inn', on: :collection
   end
 
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show, :create] do
+    resources :order_mailers, only: [:create]
+  end
+
   resources :categories, only: [:index, :show]
 end
