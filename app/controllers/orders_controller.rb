@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @orders = current_user.orders
   end
 
   def show
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def create
@@ -19,8 +19,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order)
-          .permit(:stock_number,
-                  :comment,
+          .permit(:comment,
                   order_items_attributes: [:product_id, :quantity, :price])
   end
 end
