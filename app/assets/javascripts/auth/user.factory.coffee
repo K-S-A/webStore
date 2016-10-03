@@ -32,6 +32,10 @@ angular.module('mainApp').factory 'User', [
       User.syncUser(user)
       User.rmMessage()
     
+    User.setMessage = (message) ->
+      User.currentUser.notice = message
+      User.rmMessage()
+
     User.syncUser = (user) ->
       angular.extend(User.currentUser, user)
 

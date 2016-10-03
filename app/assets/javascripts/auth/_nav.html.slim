@@ -1,4 +1,4 @@
-nav.navbar.navbar-default role="message"
+nav.navbar.navbar-primary role="message"
   .auth-msg data-ng-show='vm.user.alert || vm.user.notice'
     .alert role="alert" data={ ng_class: "{'alert-danger': vm.user.alert, 'alert-info': vm.user.notice}" }
       p.text-center data={ ng_bind: "vm.user.alert || vm.user.notice" }
@@ -10,10 +10,10 @@ nav.navbar.navbar-default role="message"
       span.icon-bar
     a.navbar-brand data={ ui_sref: "home" } ПРОМТЕХРЕСУРС
   .collapse.navbar-collapse data={ ng_class: "{ in: collapsed }" }
-    ul.nav.navbar-nav
-      li
+    ul.nav.navbar-nav.nav-pills
+      li.active
         a data={ ng_if: "vm.order.orderItems.length", ui_sref: "cart.details" }
-          | Заказ:&nbsp;
+          | Оформить заказ:&nbsp;
           span data={ ng_bind: "vm.order.orderItems.length + ' позици' + (vm.order.orderItems.length == 1 ? 'я' : vm.order.orderItems.length < 5 ? 'и' : 'й') + ' ('" }
           / span &nbsp;позиций (
           span data={ ng_bind: "vm.order.total | currency : '' : 2" }
