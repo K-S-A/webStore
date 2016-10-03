@@ -9,6 +9,6 @@ angular.module('mainApp').directive 'myDownloadPdf', [
       order: '=myDownloadPdf'
     link: (scope, element, attrs, ctrl, transcludeFn) ->
       element.on 'click', ->
-        pdfMake.createPdf(Order.toPdf(scope.order)).open()#download('Счет_' + scope.order.stock_number + '_от_' + $filter('date')(scope.order.created_at, 'dMMyyyy') + '.pdf')
+        pdfMake.createPdf(Order.toPdf(scope.order)).download('Счет_' + scope.order.stock_number + '_от_' + $filter('date')(scope.order.created_at, 'dMMyyyy') + '.pdf')
 
 ]

@@ -80,9 +80,10 @@
       .receipt-footer
         img src="/images/receipt-footer.png"
   .col-xs-2
-    button.btn.btn-block.btn-primary disabled='' Отправить на почту
-    button.btn.btn-block.btn-primary disabled='' Загрузить в формате .xls
-    button.btn.btn-block.btn-primary data={ my_download_pdf: 'vm.order' } Загрузить в формате .pdf
-    button.btn.btn-block.btn-primary data={ my_print_pdf: 'vm.order' } Печать
+    / button.btn.btn-block.btn-primary disabled='' Отправить на почту
+    / button.btn.btn-block.btn-primary disabled='' Загрузить в формате .xls
+    / button.btn.btn-block.btn-primary data={ my_download_pdf: 'vm.order' } Загрузить в формате .pdf
+    / button.btn.btn-block.btn-primary data={ my_print_pdf: 'vm.order' } Печать
     button.btn.btn-block.btn-danger data={ ui_sref: "cart.details" } Редактировать заказ
-    button.btn.btn-block.btn-success data={ ng_click: "vm.createOrder()" } Создать заказ
+    button.btn.btn-block.btn-success { data={ ng_click: "vm.createOrder()",
+                                              my_disabled_on_click: "" } } Оформить заказ

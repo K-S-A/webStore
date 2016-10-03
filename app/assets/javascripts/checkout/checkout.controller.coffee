@@ -5,7 +5,8 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
   'Order'
   'User'
   'Auth'
-  (Product, Order, User, Auth) ->
+  '$state'
+  (Product, Order, User, Auth, $state) ->
     vm = this
     vm.order = Order.current
     vm.user = User.currentUser
@@ -17,10 +18,13 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
       Order.getItemTotal(item)
 
     vm.createOrder = ->
-      Order.create(vm.order)
+      Order.create(vm.order).then (data) ->
+        User.setMessage('Заказ отправлен в обработку!')
+        # Order.reset(data)
+        $state.go('order', id: data.id)
 
     vm.companyRequisites = ->
-      vm.user.company_name
+      vm.user.companyName
 
     vm
 ]

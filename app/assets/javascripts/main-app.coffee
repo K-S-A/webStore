@@ -72,9 +72,12 @@ angular.module('mainApp', [
       .state 'order',
         url: '/orders/{id:[0-9]+}'
         templateUrl: 'orders/show.html'
-        controller: 'OrdersCtrl as vm'
-        resolve: getProduct: ['Order', '$stateParams', (Order, $stateParams) ->
-          Order.find($stateParams.id)]
+        controller: 'OrderCtrl as vm'
+        resolve: getOrder: ['Order', '$stateParams', (Order, $stateParams) ->
+          Order.find($stateParams.id).then (data) ->
+            Order.currentShow = data
+            pdfMake.createPdf(Order.toPdf(Order.currentShow)).getBase64 (str) ->
+              Order.pdf = str]
       .state 'categories',
         url: '/categories'
         templateUrl: 'categories/index.html'
