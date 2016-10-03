@@ -47,6 +47,7 @@ angular.module('mainApp').factory 'Order', [
         Order.current = data
 
     Order.create = (params) ->
+      params.id = null
       new Order(params).create()
 
     Order.addItem = (product, quantity) ->
