@@ -82,4 +82,5 @@
 #   product.scu = 'шт'
 # end
 
-Order.create(stock_number: '1045')
+# Order.create(stock_number: '1045')
+Order.new(stock_number: 1045).save(validate: false)

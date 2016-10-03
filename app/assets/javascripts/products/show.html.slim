@@ -2,10 +2,10 @@
   .col-xs-8.col-xs-offset-2
     div data={ ng_include: "'products/_header.html'" }
     .media
-      a.thumbnail.pull-left data={ ui_sref: "product({id: vm.current.id})" }
-        img.media-object { height="250"
-                           alt="{{vm.current.name}}"
-                           data={ ng_src: "{{vm.current.imgLink}}" } }
       .media-body
         a.media-heading data={ ui_sref: "product({id: vm.current.id})" }
           h4.text-center data={ ng_bind: "vm.current.name" }
+      a.thumbnail.pull-left data={ ui_sref: "product({id: vm.current.id})" }
+        img.media-object { height="250"
+                           alt="{{vm.current.name}}"
+                           data={ ng_src: "{{ vm.current.imgLink == 'images/default_product.jpg' ? 'images/default_product.jpg' : 'http://217.10.41.237/public/images/original/' + vm.current.code.slice(0, 4) + '/' + vm.current.code + '.jpg' }}" } }
