@@ -1,6 +1,7 @@
 class OrderMailer < ApplicationMailer
 
   def pdf_email(order, target, pdf)
+    @order = order
     pdf_decoded = Base64.decode64(pdf).force_encoding('utf-8')
     subject = "Счет_№#{order.stock_number}"
 

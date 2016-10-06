@@ -1,1 +1,25 @@
-h1 PDF
+h1
+  | Заказ №
+  = @order.stock_number
+  | &nbsp;от&nbsp;
+  = @order.created_at.strftime('%d/%m/%Y')
+p
+  = @order.user.company_name
+  span
+    | &nbsp;(ИНН:&nbsp;
+    = @order.user.inn
+    | )
+table.table.table-stripped
+  thead
+    tr
+      th align="center" Артикул
+      th align="center" Название
+      th align="center" Количество
+      th align="center" Ед.изм.
+      th align="center" Цена
+      th align="center" Сумма
+  tfoot
+    tr
+      td colspan="5" Всего:
+      td= @order.total
+  tbody= render partial: 'order_mailer/order_item', collection: @order.order_items
