@@ -1,4 +1,4 @@
-ruby '2.2.2'
+ruby '2.3.0'
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
@@ -37,12 +37,10 @@ group :development do
   gem 'spring'
   gem 'rubocop', '~> 0.39.0'
   gem 'any_login', '~> 0.9'
-  gem 'capistrano'#, github: 'capistrano/capistrano', ref: '96a16'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bower', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rvm', require: false
-  gem 'locum', '~> 0.1', require: false
+  # gem 'capistrano', github: 'capistrano/capistrano', ref: '96a16'
+  # gem 'capistrano-rails', require: false
+  # gem 'capistrano-rvm', require: false
+  # gem 'locum', '~> 0.1', require: false
 end
 
 group :test do
@@ -53,5 +51,5 @@ group :test do
 end
 
 group :production do
-  gem 'puma', '~> 3.6'
+  # gem 'unicorn', '~> 5.1'
 end
