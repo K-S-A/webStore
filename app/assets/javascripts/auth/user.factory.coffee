@@ -5,7 +5,8 @@ angular.module('mainApp').factory 'User', [
   'railsSerializer'
   'localStorageService'
   '$timeout'
-  (railsResourceFactory, railsSerializer, localStorageService, $timeout) ->
+  'Order'
+  (railsResourceFactory, railsSerializer, localStorageService, $timeout, Order) ->
     User = railsResourceFactory(
       url: 'users/{{id}}'
       name: 'user'
@@ -18,8 +19,8 @@ angular.module('mainApp').factory 'User', [
       User.$post('users/fetch_by_inn', inn: inn)
 
     User.setUser = (user) ->
-      user.notice = 'Вход выполнен успешно!'
       User.syncUser(user)
+      user.notice = 'Вход выполнен успешно!'
       User.rmMessage()
 
     User.logoutUser = ->
@@ -38,6 +39,9 @@ angular.module('mainApp').factory 'User', [
 
     User.syncUser = (user) ->
       angular.extend(User.currentUser, user)
+      Order.current.user ||= {}
+      angular.extend(user, Order.current.user)
+      Order.to_lstorage('order', Order.current)
 
     User.rmMessage = ->
       $timeout ->

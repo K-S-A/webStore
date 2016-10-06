@@ -18,10 +18,12 @@ angular.module('mainApp').controller 'CheckoutCtrl', [
       Order.getItemTotal(item)
 
     vm.createOrder = ->
-      Order.create(vm.order).then (data) ->
-        User.setMessage('Заказ отправлен в обработку!')
-        # Order.reset(data)
-        $state.go('order', id: data.id)
+      pdfMake.createPdf(Order.toPdf(vm.order)).getBase64 (str) ->
+        vm.order.pdf = str
+        Order.createOrder(vm.order).then (data) ->
+          User.setMessage('Заказ отправлен в обработку!')
+          Order.reset(data)
+          $state.go('order', id: data.id)
 
     vm.companyRequisites = ->
       vm.user.companyName

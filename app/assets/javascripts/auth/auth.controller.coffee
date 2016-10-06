@@ -23,7 +23,7 @@ angular.module('mainApp').controller 'AuthCtrl', [
       delete u.initDate
 
       Auth.register(u).then (user) ->
-        # angular.extend(User.currentUser, user)
+        User.setUser(user)
         $state.go('home')
 
     vm

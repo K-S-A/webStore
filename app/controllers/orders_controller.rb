@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.create(order_params)
 
+    OrderMailer.pdf_email(@order, ENV['MAIN_EMAIL'], params[:order][:pdf]).deliver_later
     render 'show'
   end
 

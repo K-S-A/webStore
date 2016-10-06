@@ -27,13 +27,15 @@ angular.module('mainApp').factory 'Order', [
     Order.currentShow ||= {}
     Order.current = localStorageService.get('order') || {orderItems: []}
     Order.current.created_at ||= new Date()
-    Order.current.stock_number ||= 'ЭМ010012713'
+    # Order.current.stock_number ||= 'ЭМ010012713'
 
     Order.reset = (data) ->
       Order.current.stockNumber = (parseInt(data.stockNumber) + 1).toString()
       Order.current.orderItems.length = 0
       Order.current.total = 0
       Order.current.comment = ''
+      Order.current.pdf = null
+      Order.to_lstorage('order', Order.current)
 
     Order.sendMail = (order, email) ->
       Order.$post('orders/' + order.id + '/order_mailers', { pdf: Order.pdf }, {}, { email: email })
@@ -44,11 +46,10 @@ angular.module('mainApp').factory 'Order', [
 
     Order.find = (id) ->
       Order.get(id).then (data) ->
-        Order.current = data
+        Order.currentShow = data
 
-    Order.create = (params) ->
-      params.id = null
-      new Order(params).create()
+    Order.createOrder = (params) ->
+      new Order({orderItems: params.orderItems, comment: params.comment, pdf: params.pdf}).create()
 
     Order.addItem = (product, quantity) ->
       Order.current.orderItems ||= []
