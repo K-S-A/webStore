@@ -6,7 +6,6 @@ gem 'pg', '~> 0.18.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'sprockets-rails', '3.1.1'
 
 gem 'slim-rails', '~> 3.0'
 gem 'angular-rails-templates', '~> 1.0'
@@ -38,10 +37,6 @@ group :development do
   gem 'spring'
   gem 'rubocop', '~> 0.39.0'
   gem 'any_login', '~> 0.9'
-  # gem 'capistrano', github: 'capistrano/capistrano', ref: '96a16'
-  # gem 'capistrano-rails', require: false
-  # gem 'capistrano-rvm', require: false
-  # gem 'locum', '~> 0.1', require: false
 end
 
 group :test do
@@ -49,8 +44,4 @@ group :test do
   gem 'fuubar', '~> 2.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'json-schema', '~> 2.6'
-end
-
-group :production do
-  # gem 'unicorn', '~> 5.1'
 end
