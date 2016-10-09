@@ -55,12 +55,13 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
-   :address              => 'smtp.gmail.com',
-   :port                 => 587,
-   :domain               => 'promtehresourse.ru',
-   :user_name            => ENV['GMAIL_LOGIN'],
-   :password             => ENV['GMAIL_PASSWORD'],
-   :authentication       => 'plain',
-  :enable_starttls_auto  => true
+    address:              'smtp.yandex.ru',
+    port:                 465,
+    domain:               'promtehresourse.ru',
+    user_name:            ENV['GMAIL_LOGIN'],
+    password:             ENV['GMAIL_PASSWORD'],
+    authentication:       'plain',
+    ssl:                  true,
+    enable_starttls_auto: true
   }
 end
