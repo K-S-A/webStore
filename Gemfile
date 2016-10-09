@@ -45,3 +45,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'json-schema', '~> 2.6'
 end
+
+group :production do
+  gem 'rails_12factor', '~> 0.0.3'
+end
