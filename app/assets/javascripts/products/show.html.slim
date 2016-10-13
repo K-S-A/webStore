@@ -3,8 +3,32 @@
     div data={ ng_include: "'products/_header.html'" }
     .media
       .media-body
-        a.media-heading data={ ui_sref: "product({id: vm.current.id})" }
-          h4.text-center data={ ng_bind: "vm.current.name" }
+        .col-md-12
+          a.media-heading data={ ui_sref: "product({id: vm.current.id})" }
+            h4.text-center data={ ng_bind: "vm.current.name" }
+
+        .col-md-12 style="padding-bottom: 15px;"
+          span.pull-right.text-success.hover.glyphicon.glyphicon-shopping-cart { style="font-size: 24px; padding-left: 10px;"
+                                                                                 data={ my_add_product: '',
+                                                                                        uib_tooltip: "Купить" } }
+          input.pull-right { type="number"
+                             min="0"
+                             max="{{ vm.current.inStock }}"
+                             step="1"
+                             data={ ng_if: "vm.current.inStock",
+                                    ng_model: "vm.current.count",
+                                    uib_tooltip: "Количество" } }
+          input.pull-right { type="number"
+                             disabled=""
+                             data={ ng_if: "!vm.current.inStock",
+                                    ng_value: "0" } }
+          strong
+            span.pull-right { style="padding: 0 15px; display: inline-block; min-width: 50px;"
+                              data={ ng_bind: "::vm.current.price | currency : '' : 2",
+                                     uib_tooltip: "Цена, руб." } }
+          span.pull-right data={ uib_tooltip: "Доступный остаток" }
+            | {{ (vm.current.inStock || 0) + ' ' + vm.current.scu }}
+
       a.thumbnail.pull-left data={ ui_sref: "product({id: vm.current.id})" }
         img.media-object { height="250"
                            alt="{{vm.current.name}}"

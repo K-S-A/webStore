@@ -8,6 +8,11 @@ angular.module('mainApp').controller 'ProductsCtrl', [
     vm = this
     vm.selected = Product.selected
     vm.current = Product.current
+    vm.current.count = 0
+
+    Order.current.orderItems.forEach (i) ->
+      vm.current.count = i.quantity if vm.current.code == i.product.code
+
     vm.products = Product.all
 
     vm.searchProduct = (name) ->
