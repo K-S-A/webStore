@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @products = Product
       .order(:name)
       .by_category(params[:category])
-      .approx_search(params[:value])
+      .exact_search(params[:value], 'name')
       .page(params[:page])
   end
 
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.order(:name).by_category(params[:category]).approx_search(params[:value]).limit(7)
+    @products = Product.order(:name).by_category(params[:category]).exact_search(params[:value], 'name').limit(7)
 
     render 'index'
   end
