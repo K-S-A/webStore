@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   paginates_per 20
 
-  belongs_to :category, counter_cache: true
+  belongs_to :category#, counter_cache: true
   has_many :order_items
 
   scope :exact_search, -> (name, type) { type == 'name' ? where('name ILIKE ?', "%#{name}%") : where("#{type}" => name) }
