@@ -18,8 +18,9 @@ angular.module('mainApp').controller 'CategoriesCtrl', [
       Category.getProducts(true)
 
     vm.addMore = ->
-      vm.pagination.page += 1
-      Category.getProducts(false)
+      # vm.pagination.page += 1
+      # Category.getProducts(false)
+      Category.getProducts(true)
 
     vm.toggleSubcategories = (category, collection, breadcrumb) ->
       category.showSub = !category.showSub

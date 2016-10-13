@@ -22,7 +22,7 @@ a.pull-left data={ ui_sref: "product({id: product.id})" }
                      data={ ng_if: "!product.inStock",
                             ng_value: "0" } }
   strong
-    span.pull-right { style="padding: 0 15px; display: inline-block; min-width: 50px;"
+    span.pull-right { style="padding: 0 15px; display: inline-block; min-width: 100px; text-align: right;"
                       data={ ng_bind: "::product.price | currency : '' : 2",
                              uib_tooltip: "Цена, руб." } }
   span.pull-right data={ uib_tooltip: "Доступный остаток" }

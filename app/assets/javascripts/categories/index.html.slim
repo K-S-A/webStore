@@ -15,11 +15,18 @@
                     span.hover data={ ng_bind: "::lessercategory.name" }
   .col-xs-8.col-xs-offset-4
 
-    ol.breadcrumb
+    ol.breadcrumb style='margin-bottom: 0;'
       li data={ ng_repeat: "category in vm.breadcrumbs", ng_bind: 'category.name' }
 
-    div style="margin-top: 30px;"
-      .text-center data={ ng_hide: 'vm.products.length' } Нет результатов для отображения
-      div data={ ng_if: 'vm.products.length', infinite_scroll: "vm.addMore()", infinite_scroll_disabled: "vm.pagination.lastPage", infinite_scroll_distance: '1', ng_show: 'vm.products.length' }
-        .product-inline.media data={ ng_repeat: "product in vm.products",
-                                     ng_include: "'products/index.html'" }
+    div style='text-align: center;'
+      ul { uib-pagination=''
+           ng-show='vm.products.length'
+           total-items='vm.category.productsCount'
+           ng-model='vm.pagination.page'
+           ng-change='vm.addMore()'
+           items-per-page='10'
+           style='margin: 14px 0;' }
+    .text-center data={ ng_hide: 'vm.products.length' } Нет результатов для отображения
+    / div data={ ng_if: 'vm.products.length', infinite_scroll: "vm.addMore()", infinite_scroll_disabled: "vm.pagination.lastPage", infinite_scroll_distance: '1', ng_show: 'vm.products.length' }
+    .product-inline.media data={ ng_repeat: "product in vm.products",
+                                 ng_include: "'products/index.html'" }

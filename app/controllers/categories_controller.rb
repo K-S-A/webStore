@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @products = Product.where(category_id: params[:id]).order(:name).page(params[:page])
+    @products = Product.where(category_id: params[:id]).order(:name).page(params[:page]).per(10)
 
     render 'products/index'
   end
