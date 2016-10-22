@@ -5,7 +5,9 @@
       .media-body
         .col-md-12
           a.media-heading data={ ui_sref: "product({id: vm.current.id})" }
-            h4.text-center data={ ng_bind: "vm.current.name" }
+            h4.text-center
+              span.label.label-primary style="margin: 0 15px" data={ ng_bind: "::vm.current.code" }
+              span data={ ng_bind: "::vm.current.name" }
 
         .col-md-12 style="padding-bottom: 15px;"
           span.pull-right.text-success.hover.glyphicon.glyphicon-shopping-cart { style="font-size: 24px; padding-left: 10px;"

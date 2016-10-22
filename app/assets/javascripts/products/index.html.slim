@@ -1,10 +1,11 @@
-a.pull-left data={ ui_sref: "product({id: product.id})" }
+a.pull-left style='width: 63px;' data={ ui_sref: "product({id: product.id})" }
   img.media-object { height="35"
                      alt="{{ product.name }}"
                      data={ ng_src: "{{ product.imgLink }}",
                             uib_tooltip: "{{::product.code}}" } }
 .media-body
-  a { style='display: inline-block; width: 60%;'
+  span.label.label-primary style="margin: 0 10px" data={ ng_bind: "::product.code" }
+  a { style='display: inline-block; width: 55%;'
       data={ ng_bind: "::product.name",
              ui_sref: "product({id: product.id})" } }
   span.pull-right.text-success.hover.glyphicon.glyphicon-shopping-cart { style="padding-left: 10px;"

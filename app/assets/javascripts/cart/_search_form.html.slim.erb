@@ -3,14 +3,14 @@
     select.form-control data={ ng_model: 'vm.searchBy',
                                ng_change: 'vm.findByCategory()' }
       option value="name" Искать по имени
-      option value="code" Искать по коду
+      option value="code" Искать по артикулу
 .form-group
   .input-group.input-group-sm
-    select.form-control data={ ng_model: 'vm.category',
+    select.form-control style="width: 126px;" data={ ng_model: 'vm.category',
                                ng_change: 'vm.findByCategory()' }
       option value="all" Все категории
-      option value="1" Материалы
-      option value="2" Оборудование
+      option value="<%= Category.find_by(name: 'Товары TDM').id %>" Товары TDM
+      option value="<%= Category.find_by(name: 'Товары серии "Народная"').id %>" Cерия "Народная"
 .form-group
   .input-group.input-group-sm.search-box
     input.form-control { placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"
