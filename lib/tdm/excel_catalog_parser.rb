@@ -93,10 +93,11 @@ module TDM
         code: row[0],
         name: row[1],
         in_stock: parse_stock_count(row[3]),
-        price: (row[7] || 0) * price_quotient,
+        price: row[7].to_f * price_quotient,
         scu: row[15],
         img_link: parse_img_link(new_product, row[0]),
-        category_id: categories.last.id
+        category_id: categories.last.id,
+        root_category_id: categories.first.id
       )
     end
     
@@ -203,3 +204,6 @@ end
 
 # # Remove unnecessary categories
 # Category.where(name: ['Рекламные материалы', 'Товары других отечественных производителей']).destroy_all
+
+# # Update products counter for categories
+# Category.find_each { |c| c.update_attribute(:products_count, c.products.length) }
