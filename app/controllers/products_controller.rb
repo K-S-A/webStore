@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @products = Product
       .order(:name)
       .by_category(params[:category])
-      .exact_search(params[:value], 'name')
+      .exact_search(params[:value], params[:type])
       .page(params[:page])
   end
 

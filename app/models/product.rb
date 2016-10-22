@@ -6,9 +6,9 @@ class Product < ActiveRecord::Base
   belongs_to :category#, counter_cache: true
   has_many :order_items
 
-  scope :exact_search, -> (name, type) { type == 'name' ? where('name ILIKE ?', "%#{name}%") : where("#{type}" => name) }
+  scope :exact_search, -> (name, type) { where("#{type} ILIKE ?", "%#{name}%") }
   scope :approx_search, -> (value) { where('name ILIKE ANY ( array[?] )', separated(value)) }
-  scope :by_category, -> (category) { where(category: category) if category }
+  scope :by_category, -> (category) { where(root_category_id: category) if category }
 
   # scope :search, -> (value, type, count = MAX_SEARCH_COUNT) do
   #     return unless value.present?
